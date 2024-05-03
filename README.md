@@ -2,10 +2,6 @@
 
 DX - Vanilia JS Architecture Pattern
 
-- [DX](#dx)
-  - [Foundation](#foundation)
-  - [Examples](#examples)
-
 ## Foundation
 
 1. DOM State. State is stored in DOM. State is not stored in javascript variables.
