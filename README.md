@@ -16,8 +16,8 @@ DX - Vanilia JS Architecture Pattern
 
 ## Examples
 
-[Todo List](./example-todo-list.php)
-[Accordion](./example-accordion.php)
-[Render](./dx-render-example.php)
-[Condition](./dx-condition-example-select.php)
-[Removeitem](./dx-removeitem.php)
+- [Todo List](./example-todo-list.php)
+- [Accordion](./example-accordion.php)
+- [Render](./dx-render-example.php)
+- [Condition](./dx-condition-example-select.php)
+- [Removeitem](./dx-removeitem.php)
