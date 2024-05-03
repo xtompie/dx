@@ -54,7 +54,7 @@ let todo = (function(){
     <div todo-space>
         <div todo-items></div>
         <div>
-            <input type="text" todo-add-text>
+            <input type="text" todo-add-text />
             <button onclick="todo.add(this)">add</button>
         </div>
         <pre todo-output></pre>
@@ -62,9 +62,9 @@ let todo = (function(){
     <div todo-space>
         <div todo-items></div>
         <div>
-            <input type="text" todo-add-text>
+            <input type="text" todo-add-text />
             <button onclick="todo.add(this)">add</button>
         </div>
         <pre todo-output></pre>
     </div>
-</table>
+</div>
