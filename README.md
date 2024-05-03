@@ -18,9 +18,4 @@ DX - JavaScript Architecture Pattern
 - [Condition](./dx-condition-example-select.php)
 - [Removeitem](./dx-removeitem.php)
 
-To run examples:
-
-- clone this repo,
-- go to repo in cli,
-- run `php -S 127.0.0.1:8000`,
-- open `127.0.0.1:8000` in browser.
+To run examples clone this repo, go to repo in cli, run `php -S 127.0.0.1:8000`, open `127.0.0.1:8000` in browser.
