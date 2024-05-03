@@ -4,18 +4,18 @@ dx.val = (function() {
     function mode(el) {
         return el.getAttribute('dx-val-mode') || 'text';
     }
-    function setElementValue(el, value, mode) {
+    function setElVal(el, val, mode) {
         if (mode === 'text') {
-            el.textContent = value;
+            el.textContent = val;
         } else if (mode === 'html') {
-            el.innerHTML = value;
+            el.innerHTML = val;
         }
     }
-    function set(ctx, value) {
+    function set(ctx, val) {
         dx.space(ctx, '[dx-val-sapce]').querySelectorAll('[dx-val]').forEach(el => {
             let k = el.getAttribute('dx-val-model');
-            if (k in value) {
-                setElementValue(el, value[k], mode(el));
+            if (k in val) {
+                setElVal(el, val[k], mode(el));
             }
         });
     }

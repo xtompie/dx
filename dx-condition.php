@@ -1,4 +1,4 @@
-<?php include_once 'dx-space.php' ?>
+<?php require_once 'dx-space.php' ?>
 
 <script>
 var dx = dx || {};
@@ -16,11 +16,11 @@ dx.condition = (() => {
     }
     function getVariableValue(ctx, name) {
         return getElementValue(
-            dx.space(ctx, '[dx-condition-space]').querySelector('[dx-condition-model="'+name+'"]')
+            dx.space(ctx, '[dx-condition-space]').querySelector(`[dx-condition-model="${name}"]`)
         );
     }
     function getDependants(ctx, name) {
-        return dx.space(ctx, '[dx-condition-space]').querySelectorAll('[dx-condition-variable="'+name+'"]');
+        return dx.space(ctx, '[dx-condition-space]').querySelectorAll(`[dx-condition-variable="${name}"]`);
     }
     function updateDependant(el, variable) {
         let value = el.getAttribute('dx-condition-value');

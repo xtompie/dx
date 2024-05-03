@@ -1,4 +1,4 @@
-<?php include_once 'dx-condition.php' ?>
+<?php require_once 'dx-condition.php' ?>
 
 <div dx-condition-space>
 
