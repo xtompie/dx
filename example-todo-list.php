@@ -9,14 +9,16 @@ let todo = (function(){
         output(space);
     }
     function check(ctx) {
+        let space = ctx.closest('[todo-space]');
         let item = ctx.closest('[todo-item]');
         let done = item.querySelector('[todo-item-checkbox]').checked;
         item.setAttribute('todo-item-status', done ? 'done' : '');
-        output();
+        output(space);
     }
     function remove(ctx) {
+        let space = ctx.closest('[todo-space]');
         ctx.closest('[todo-item]').remove();
-        output();
+        output(space);
     }
     function output(space) {
         let data = Array.from(space.querySelectorAll('[todo-item]')).map(item => ({
