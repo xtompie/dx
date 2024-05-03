@@ -1,11 +1,12 @@
 <script>
 let todo = (function(){
-    function add() {
+    function add(ctx) {
+        let space = ctx.closest('[todo-space]');
         let item = document.querySelector('[todo-item-tpl]').content.cloneNode(true);
-        item.querySelector('[todo-item-text]').textContent = document.querySelector('[todo-add-text]').value;
-        document.querySelector('[todo-add-text]').value = '';
-        document.querySelector('[todo-items]').append(item);
-        output();
+        item.querySelector('[todo-item-text]').textContent = space.querySelector('[todo-add-text]').value;
+        space.querySelector('[todo-add-text]').value = '';
+        space.querySelector('[todo-items]').append(item);
+        output(space);
     }
     function check(ctx) {
         let item = ctx.closest('[todo-item]');
@@ -17,12 +18,12 @@ let todo = (function(){
         ctx.closest('[todo-item]').remove();
         output();
     }
-    function output() {
-        let data = Array.from(document.querySelectorAll('[todo-item]')).map(item => ({
+    function output(space) {
+        let data = Array.from(space.querySelectorAll('[todo-item]')).map(item => ({
             done: item.getAttribute('todo-item-status') === 'done',
             text: item.querySelector('[todo-item-text]').textContent,
         }));
-        document.querySelector('[todo-output]').textContent = JSON.stringify(data, null, 4);
+        space.querySelector('[todo-output]').textContent = JSON.stringify(data, null, 4);
     }
     return {
         add,
@@ -36,6 +37,10 @@ let todo = (function(){
 [todo-item-status="done"] [todo-item-text] {
     text-decoration: line-through;
 }
+.container {
+    display: flex;
+    gap: 1rem;
+}
 </style>
 
 <template todo-item-tpl>
@@ -45,13 +50,21 @@ let todo = (function(){
         <button onclick="todo.remove(this)">remove</button>
     </div>
 </template>
-
-<div todo-items>
-
-</div>
-
-<div>
-    <input type="text" todo-add-text> <button onclick="todo.add()">add</button>
-</div>
-
-<pre todo-output></pre>
+<div class="container">
+    <div todo-space>
+        <div todo-items></div>
+        <div>
+            <input type="text" todo-add-text>
+            <button onclick="todo.add(this)">add</button>
+        </div>
+        <pre todo-output></pre>
+    </div>
+    <div todo-space>
+        <div todo-items></div>
+        <div>
+            <input type="text" todo-add-text>
+            <button onclick="todo.add(this)">add</button>
+        </div>
+        <pre todo-output></pre>
+    </div>
+</table>
