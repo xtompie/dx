@@ -1,6 +1,6 @@
 # DX
 
-DX - Vanilia JS Architecture Pattern
+DX - JavaScript Architecture Pattern
 
 ## Foundation
 
