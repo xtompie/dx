@@ -38,7 +38,7 @@ Events are set in html attributes. Events are not dynamic binded with addEventLi
 
 ### 3. Action in context
 
-Event have current DOMElement from which operation space can be resolved.
+The event has a current DOMElement from which the operating space can be determined.
 
 ```html
 <script>
