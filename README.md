@@ -42,14 +42,15 @@ Event have current DOMElement from which operation space can be resolved.
 
 ```html
 <script>
-function add(ctx) {
+todo.add = function (ctx) {
     let space = ctx.closest('[todo-space]');
     // ...
     space.querySelector('[todo-add-text]').value = '';
 // ...
 }
 </script>
-<button onclick="add(this)">Add</button>
+<!-- ... -->
+<button onclick="todo.add(this)">Add</button>
 ```
 
 ### 4. Module Object
