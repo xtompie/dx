@@ -50,7 +50,12 @@ todo.add = function (ctx) {
 }
 </script>
 <!-- ... -->
-<button onclick="todo.add(this)">Add</button>
+<div todo-space>
+    <!-- ... -->
+    <input type="text" todo-add-text />
+    <button onclick="todo.add(this)">Add</button>
+    <!-- ... -->
+</div>
 ```
 
 ### 4. Module Object
