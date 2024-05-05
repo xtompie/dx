@@ -60,7 +60,7 @@ todo.add = function (ctx) {
 
 ### 4. Module Object
 
-Module Object and [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression)
+Module Object and [Immediately Invoked Function Expression](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) for modularity and encapsulation
 
 ```javascript
 let accordion = (function() {
@@ -82,7 +82,7 @@ let accordion = (function() {
 
 ### 5. High UX Performance
 
-Zero init time. No jumping interface while loading.
+Instant initialization, seamless loading interface, ultra-responsive, and lightning-fast interaction.
 
 ```html
 <div accordion-space>
