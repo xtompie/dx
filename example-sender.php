@@ -28,8 +28,8 @@ var sender = (function(){
 })();
 </script>
 <div sender-space sender-success="(a) => alert(a.join(','))">
-    <div><input type="checkbox" onclick="sender.all(this)"/> All</div>
-    <div><input type="text" oninput="sender.filter(this)"></div>
+    <div><input type="checkbox" onclick="sender.all(this)" /> All</div>
+    <div><input type="text" oninput="sender.filter(this)" /></div>
     <div sender-group>
         <div>
             <input type="checkbox" onclick="sender.group(this)"/> <strong>A</strong>
