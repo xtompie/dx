@@ -1,67 +1,73 @@
 <script>
+HTMLElement.prototype.up = function (selector) {
+    return this.closest(selector);
+}
+HTMLElement.prototype.all = function (selector) {
+    return Array.from(this.querySelectorAll(selector));
+}
+HTMLElement.prototype.one = function (selector) {
+    return this.querySelector(selector);
+}
 let ra = (function() {
     let max = 3;
-    function updateValue(e, amount) {
-        let v = e.closest('[ra-answer]').querySelector('[ra-value]');
-        v.value = parseInt(v.value) + amount;
-        updatePage(e.closest('[ra-page]'));
-    }
-    function resolveUsed(page) {
-        return Array.from(page.querySelectorAll('input')).reduce((c, e) => c + parseInt(e.value), 0);
-    }
-    function isPageValid(page) {
-        return resolveUsed(page) === max;
-    }
-    function updatePage(page) {
-        let used = resolveUsed(page);
-        let reached = used === max;
-        page.querySelector('[ra-available]').innerText = max - used;
-        page.querySelectorAll('[ra-answer]').forEach(answer => {
-            let value = parseInt(answer.querySelector('[ra-value]').value);
-            answer.querySelector('[ra-sub]').disabled = value === 0;
-            answer.querySelector('[ra-add]').disabled = reached;
+    function value(e, amount) {
+        let value = e.up('[ra-answer]').one('[ra-value]');
+        value.value = parseInt(value.value) + amount;
+        let page = e.up('[ra-page]');
+        let sum = used(page);
+        let reached = sum === max;
+        page.one('[ra-available]').innerText = max - sum;
+        page.all('[ra-answer]').forEach(answer => {
+            answer.one('[ra-sub]').disabled = parseInt(answer.one('[ra-value]').value) === 0;
+            answer.one('[ra-add]').disabled = reached;
         });
     }
-    function changePage(space, name) {
-        space.querySelectorAll('[ra-page]').forEach(page => {
+    function used(page) {
+        return page.all('input').reduce((c, e) => c + parseInt(e.value), 0);
+    }
+    function validate(page) {
+        let valid = used(page) === max;
+        if (!valid) {
+            page.one('[ra-error]').removeAttribute('ra-hide');
+        }
+        return valid;
+    }
+    function page(space, name) {
+        space.all('[ra-page]').forEach(page => {
             page.toggleAttribute('ra-hide', page.getAttribute('ra-page') !== name)
         });
     }
-    function resolveValue(space) {
-        return Array.from(space.querySelectorAll('[ra-page-question]')).map(page => ({
-            question: page.querySelector('[ra-question]').textContent,
-            answer: Array.from(page.querySelectorAll('[ra-answer]')).map(answer => ({
-                text: answer.querySelector('[ra-answer-text]').textContent,
-                value: parseInt(answer.querySelector('[ra-value]').value),
+    function output(space) {
+        return space.all('[ra-page-question]').map(page => ({
+            question: page.one('[ra-question]').textContent,
+            answer: page.all('[ra-answer]').map(answer => ({
+                text: answer.one('[ra-answer-text]').textContent,
+                value: parseInt(answer.one('[ra-value]').value),
             })),
         }));
     }
     function add(e) {
-        updateValue(e, 1);
+        value(e, 1);
     }
     function sub(e) {
-        updateValue(e, -1);
+        value(e, -1);
     }
     function prev(e, prev) {
-        changePage(e.closest('[ra-space]'), prev);
+        page(e.up('[ra-space]'), prev);
     }
     function next(e, next) {
-        let page = e.closest('[ra-page]');
-        if (!isPageValid(page)) {
-            page.querySelector('[ra-error]').removeAttribute('ra-hide');
+        if (!validate(e.up('[ra-page]'))) {
             return;
         }
-        changePage(e.closest('[ra-space]'), next);
+        page(e.up('[ra-space]'), next);
     }
     function finish(e) {
-        let page = e.closest('[ra-page]');
-        if (!isPageValid(page)) {
-            page.querySelector('[ra-error]').removeAttribute('ra-hide');
+        if (!validate(e.up('[ra-page]'))) {
             return;
         }
-        let space = e.closest('[ra-space]');
-        space.querySelector('[ra-output]').textContent = JSON.stringify(resolveValue(space), null, 4);
-        changePage(space, 'finished');
+        let space = e.up('[ra-space]');
+        space.one('[ra-output]').textContent = JSON.stringify(output(space), null, 4);
+        page(space, 'finished');
     }
     return {
         sub,
