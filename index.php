@@ -1,4 +1,8 @@
-<?php foreach(glob('*.php') as $file): ?>
-    <a href="<?= $file ?>"><?= $file ?></a> <br />
-<?php endforeach; ?>
+<a href="accordion/">accordion</a> <br />
+<a href="condition/">condition</a> <br />
+<a href="ra/">ra</a> <br />
+<a href="render/">render</a> <br />
+<a href="sender/">sender</a> <br />
+<a href="todolist/">todolist</a> <br />
+
 

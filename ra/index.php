@@ -1,6 +1,6 @@
-<?php require_once 'example-ra-js.php'; ?>
-<?php require_once 'example-ra-css.php'; ?>
-<?php $questions = require "example-ra-model.php" ?>
+<?php require_once 'js.php'; ?>
+<?php require_once 'css.php'; ?>
+<?php $questions = require "model.php" ?>
 <?php $last = count($questions) - 1 ?>
 <div ra-space>
     <?php foreach ($questions as $index => $question): ?>

@@ -8,6 +8,9 @@ HTMLElement.prototype.all = function (selector) {
 HTMLElement.prototype.one = function (selector) {
     return this.querySelector(selector);
 }
+Array.prototype.each = function(f) {
+    return this.forEach(f);
+}
 let ra = (function() {
     let max = 3;
     function value(e, amount) {
@@ -17,7 +20,7 @@ let ra = (function() {
         let sum = used(page);
         let reached = sum === max;
         page.one('[ra-available]').innerText = max - sum;
-        page.all('[ra-answer]').forEach(answer => {
+        page.all('[ra-answer]').each(answer => {
             answer.one('[ra-sub]').disabled = parseInt(answer.one('[ra-value]').value) === 0;
             answer.one('[ra-add]').disabled = reached;
         });
@@ -33,7 +36,7 @@ let ra = (function() {
         return valid;
     }
     function page(space, name) {
-        space.all('[ra-page]').forEach(page => {
+        space.all('[ra-page]').each(page => {
             page.toggleAttribute('ra-hide', page.getAttribute('ra-page') !== name)
         });
     }

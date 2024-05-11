@@ -1,6 +1,16 @@
-<?php require_once 'dx-space.php' ?>
-
 <script>
+HTMLElement.prototype.up = function(s) {
+    return this.closest(s);
+}
+HTMLElement.prototype.one = function(s) {
+    return this.querySelector(s);
+}
+HTMLElement.prototype.all = function(s) {
+    return Array.from(this.querySelectorAll(s));
+}
+Array.prototype.each = function(f) {
+    return this.forEach(f);
+}
 var dx = dx || {};
 dx.condition = (() => {
     function isEnabled(variable, operator, val) {
@@ -16,11 +26,11 @@ dx.condition = (() => {
     }
     function getVariableValue(ctx, name) {
         return getElementValue(
-            dx.space(ctx, '[dx-condition-space]').querySelector(`[dx-condition-model="${name}"]`)
+            ctx.up('[dx-condition-space]').one(`[dx-condition-model="${name}"]`)
         );
     }
     function getDependants(ctx, name) {
-        return dx.space(ctx, '[dx-condition-space]').querySelectorAll(`[dx-condition-variable="${name}"]`);
+        return ctx.up('[dx-condition-space]').all(`[dx-condition-variable="${name}"]`);
     }
     function updateDependant(el, variable) {
         let value = el.getAttribute('dx-condition-value');
@@ -32,7 +42,7 @@ dx.condition = (() => {
         variable(ctx, name, getVariableValue(ctx, name));
     }
     function variable(ctx, name, value) {
-        getDependants(ctx, name).forEach(el => updateDependant(el, value));
+        getDependants(ctx, name).each(el => updateDependant(el, value));
     }
     return {
         model,

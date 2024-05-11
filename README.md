@@ -103,10 +103,11 @@ Instant initialization, seamless loading interface, ultra-responsive, and lightn
 
 ## Examples
 
-- [Todo List](./example-todo-list.php)
-- [Accordion](./example-accordion.php)
-- [Render](./dx-render-example.php)
-- [Condition](./dx-condition-example-select.php)
-- [Removeitem](./dx-removeitem.php)
+- [Accordion](./accordion/)
+- [Condition](./condition/)
+- [Ra](./ra/)
+- [Render](./render/)
+- [Sender](./sender/)
+- [Todo List](./todolist/)
 
 To run examples clone this repo, go to repo in cli, run `php -S 127.0.0.1:8000`, open `127.0.0.1:8000` in browser.

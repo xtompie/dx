@@ -1,23 +1,37 @@
 <script>
-var sender = (function(){
-    function all(e){
-        e.closest('[sender-space]').querySelectorAll('[sender-option]').forEach(i => i.checked = e.checked);
+HTMLElement.prototype.up = function(s) {
+    return this.closest(s);
+}
+HTMLElement.prototype.one = function(s) {
+    return this.querySelector(s);
+}
+HTMLElement.prototype.all = function(s) {
+    return Array.from(this.querySelectorAll(s));
+}
+Array.prototype.each = function(f) {
+    return this.forEach(f);
+}
+var sender = (function() {
+    function all(e) {
+        e.closest('[sender-space]').all('[sender-option]').each(i => i.checked = e.checked);
     }
-    function filter(e){
-        e.closest('[sender-space]').querySelectorAll('[sender-filter]').forEach(i =>
+    function filter(e) {
+        let space = e.closest('[sender-space]');
+        space.all('[sender-filter]').each(i =>
             i.style.display = i.getAttribute('sender-filter').toLowerCase().indexOf(e.value.toLowerCase()) > -1 ? '' : 'none'
         );
-        e.closest('[sender-space]').querySelectorAll('[sender-group]').forEach(i =>
-            i.style.display = i.querySelectorAll('[sender-filter]:not([style="display: none;"])').length > 0 ? '' : 'none'
+        space.all('[sender-group]').each(i =>
+            i.style.display = i.all('[sender-filter]:not([style="display: none;"])').length > 0 ? '' : 'none'
         );
     }
-    function group(e){
-        e.closest('[sender-group]').querySelectorAll('[sender-option]').forEach(i => i.checked = e.checked);
+    function group(e) {
+        e.closest('[sender-group]').all('[sender-option]').each(i => i.checked = e.checked);
     }
-    function submit(e){
-        let a = Array.from(e.closest('[sender-space]').querySelectorAll('[sender-option]:checked')).map(i => i.value);
-        let x = e.closest('[sender-space]').getAttribute('sender-success');
-        eval(`(${x})(a)`);
+    function submit(e) {
+        let space = e.closest('[sender-space]');
+        let selected = Array.from(space.all('[sender-option]:checked')).map(i => i.value);
+        let fn = space.getAttribute('sender-success');
+        eval(`(${fn})(selected)`);d
     }
     return {
         all,

@@ -1,4 +1,4 @@
-<?php require_once 'dx-render.php' ?>
+<?php require_once 'js.php' ?>
 
 <div>
     <template ticket-tpl>
