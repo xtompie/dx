@@ -33,9 +33,15 @@ dx.render = (function () {
     function append(to, template, data) {
         document.querySelector(to).append(tpl(template, data));
     }
+    function update(selector, data) {
+        let el = document.querySelector(selector);
+        el.innerHTML = '';
+        el.append(tpl(el.getAttribute('dx-render-tpl'), data))
+    }
     return {
         tpl,
         append,
+        update,
     };
 })();
 </script>

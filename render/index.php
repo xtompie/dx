@@ -14,11 +14,11 @@
         <div><span dx-render-model="author" dx-render-tpl="[ticket-tpl-person]"></span>:</div>
         <div dx-render-model="text" dx-render-mode="html"></div>
     </template>
-    <div ticket-spawn>
+    <div ticket-view dx-render-tpl="[ticket-tpl]">
 
     </div>
     <script>
-         dx.render.append('[ticket-spawn]', '[ticket-tpl]', {
+         dx.render.update('[ticket-view]', {
             title: 'Ticket #123',
             description: '<b>Warning!</b> Some description',
             author: {
