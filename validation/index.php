@@ -40,7 +40,7 @@
             </div>
         </div>
         <div fv-group>
-            <div fv-model="">
+            <div fv-model="" fv-element="confirm_password">
                 <div fv-validator="callback" fv-validator-callback="(v) => v.password === v.confirm_password" fv-validator-message="Password must be same"></div>
             </div>
         </div>
