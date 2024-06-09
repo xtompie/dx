@@ -1,6 +1,5 @@
 <script>
-var dx = dx || {};
-dx.render = (function () {
+render = (function () {
     function scalar(el, view, mode) {
         if (mode === 'html') {
             el.innerHTML = view;
@@ -10,11 +9,11 @@ dx.render = (function () {
     }
     function tpl(selector, data) {
         let t = document.querySelector(selector).content.cloneNode(true);
-        t.querySelectorAll('[dx-render-model]').forEach(el => {
-            let name = el.getAttribute('dx-render-model');
+        t.querySelectorAll('[render-model]').forEach(el => {
+            let name = el.getAttribute('render-model');
             let value = data[name];
             if (Array.isArray(value)) {
-                let itpl = el.getAttribute('dx-render-tpl');
+                let itpl = el.getAttribute('render-tpl');
                 el.append(value.reduce(
                     (c, item) => {
                         c.append(tpl(itpl, item));
@@ -23,9 +22,9 @@ dx.render = (function () {
                     document.createDocumentFragment()
                 ));
             } else if (value !== null && typeof value === 'object') {
-                el.append(tpl(el.getAttribute('dx-render-tpl'), value));
+                el.append(tpl(el.getAttribute('render-tpl'), value));
             } else {
-                scalar(el, value, el.getAttribute('dx-render-mode') || 'text');
+                scalar(el, value, el.getAttribute('render-mode') || 'text');
             }
         });
         return t;
@@ -36,7 +35,7 @@ dx.render = (function () {
     function update(selector, data) {
         let el = document.querySelector(selector);
         el.innerHTML = '';
-        el.append(tpl(el.getAttribute('dx-render-tpl'), data))
+        el.append(tpl(el.getAttribute('render-tpl'), data))
     }
     return {
         tpl,

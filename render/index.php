@@ -2,23 +2,22 @@
 
 <div>
     <template ticket-tpl>
-        <h1 dx-render-model="title"></h1>
-        <div>Author: <span dx-render-model="author" dx-render-tpl="[ticket-tpl-person]"></span></div>
-        <div>Assigned: <span dx-render-model="assigned" dx-render-tpl="[ticket-tpl-person]"></span></div>
-        <p dx-render-model="description" dx-render-mode="html"></p>
-        <div dx-render-model="comments" dx-render-tpl="[ticket-tpl-comment]"></div>
+        <h1 render-model="title"></h1>
+        <div>Author: <span render-model="author" render-tpl="[ticket-tpl-person]"></span></div>
+        <div>Assigned: <span render-model="assigned" render-tpl="[ticket-tpl-person]"></span></div>
+        <p render-model="description" render-mode="html"></p>
+        <div render-model="comments" render-tpl="[ticket-tpl-comment]"></div>
     </template>
     <template ticket-tpl-person>
-        <span dx-render-model="name"></span> (<span dx-render-model="email"></span>)</template>
+        <span render-model="name"></span> (<span render-model="email"></span>)</template>
     <template ticket-tpl-comment>
-        <div><span dx-render-model="author" dx-render-tpl="[ticket-tpl-person]"></span>:</div>
-        <div dx-render-model="text" dx-render-mode="html"></div>
+        <div><span render-model="author" render-tpl="[ticket-tpl-person]"></span>:</div>
+        <div render-model="text" render-mode="html"></div>
     </template>
-    <div ticket-view dx-render-tpl="[ticket-tpl]">
-
+    <div ticket-view render-tpl="[ticket-tpl]">
     </div>
     <script>
-         dx.render.update('[ticket-view]', {
+        render.update('[ticket-view]', {
             title: 'Ticket #123',
             description: '<b>Warning!</b> Some description',
             author: {
