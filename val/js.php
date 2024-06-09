@@ -1,8 +1,7 @@
 <script>
-var dx = dx || {};
-dx.val = (function() {
+val = (function() {
     function mode(el) {
-        return el.getAttribute('dx-val-mode') || 'text';
+        return el.getAttribute('val-mode') || 'text';
     }
     function setElVal(el, val, mode) {
         if (mode === 'text') {
@@ -12,8 +11,8 @@ dx.val = (function() {
         }
     }
     function set(ctx, val) {
-        dx.space(ctx, '[dx-val-sapce]').querySelectorAll('[dx-val]').forEach(el => {
-            let k = el.getAttribute('dx-val-model');
+        ctx.closest('[val-sapce]').querySelectorAll('[val]').forEach(el => {
+            let k = el.getAttribute('val-model');
             if (k in val) {
                 setElVal(el, val[k], mode(el));
             }

@@ -11,7 +11,7 @@ render = (function () {
         let t = document.querySelector(selector).content.cloneNode(true);
         t.querySelectorAll('[render-model]').forEach(el => {
             let name = el.getAttribute('render-model');
-            let value = data[name];
+            let value = name === '' ? data : data[name];
             if (Array.isArray(value)) {
                 let itpl = el.getAttribute('render-tpl');
                 el.append(value.reduce(
