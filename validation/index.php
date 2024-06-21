@@ -1,50 +1,44 @@
 <?php require_once 'js.php' ?>
 
-<div fv-space>
+<div validation-space>
 
-    <template fv-tpl-errors>
-        <div render-model="errors" render-tpl="[fv-tpl-error]"></div>
+
+    <div validation-logic>
+        <div validation-group>
+            <div validation-key="email">
+                <div validation-validator-required></div>
+                <div validation-validator-email></div>
+            </div>
+            <div validation-key="password">
+                <div validation-required></div>
+                <div validation-min="6"></div>
+                <div validation-regexp="[a-z]"></div>
+                <div validation-regexp="[A-Z]"></div>
+                <div validation-regexp="[0-9]"></div>
+            </div>
+            <div validation-main="password_confirm">
+                <div validation-callback>Passwords do not match</div>
+            </div>
+        </div>
+    </div>
+
+    <template validation-tpl-errors>
+        <div render-model="errors" render-tpl="[validation-tpl-error]"></div>
     </template>
-    <template fv-tpl-error>
+    <template validation-tpl-error>
         <div render-model="message"></div>
     </template>
 
-    <div fv-element="email">
-        <input type="text" name="email" val-model="email" />
-        <div fv-errors render-tpl="[fv-tpl-errors]"></div>
-    </div>
+    <input type="text" name="email" validation-model="email" />
+    <div validation-errors="|email|"  render-tpl="[validation-tpl-errors]"></div>
 
-    <div fv-element>
-        <input type="password" name="password" val-model="password" />
-        <div fv-errors render-tpl="[fv-tpl-errors]"></div>
-    </div>
+    <input type="password" name="password" validation-model="password" />
+    <div validation-errors="" render-tpl="[validation-tpl-errors]"></div>
 
-    <div fv-element>
-        <input type="password" name="confirm_password" val-model="confirm_password" />
-        <div fv-errors render-tpl="[fv-tpl-errors]"></div>
-    </div>
+    <input type="password" name="confirm_password" validation-model="confirm_password" />
+    <div validation-errors render-tpl="[validation-tpl-errors]"></div>
 
-    <button type="button" onclick="fv.validate(this)">Submit</button>
+    <button type="button" onclick="validation.validate(this)">Submit</button>
 
-    <div fv-validation>
-        <div fv-group>
-            <div fv-model="email">
-                <div fv-validator="required"></div>
-                <div fv-validator="email"></div>
-            </div>
-            <div fv-model="password">
-                <div fv-validator="required"></div>
-            </div>
-            <div fv-model="confirm_password">
-                <div fv-validator="required"></div>
-            </div>
-        </div>
-        <div fv-group>
-            <div fv-model="" fv-element="confirm_password">
-                <div fv-validator="callback" fv-validator-callback="(v) => v.password === v.confirm_password" fv-validator-message="Password must be same"></div>
-            </div>
-        </div>
-
-    </div>
 
 </div>
