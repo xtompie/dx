@@ -7,7 +7,7 @@ DX - JavaScript Architecture Pattern
     - [1. DOM State](#1-dom-state)
     - [2. Event attibutes](#2-event-attibutes)
     - [3. Action in context](#3-action-in-context)
-    - [4. Module Object](#4-module-object)
+    - [4. Modularization](#4-modularization)
     - [5. High UX Performance](#5-high-ux-performance)
   - [Examples](#examples)
 
@@ -60,7 +60,7 @@ todo.add = function (ctx) {
 </div>
 ```
 
-### 4. Module Object
+### 4. Modularization
 
 Module Object and [Immediately Invoked Function Expression](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) for modularity and encapsulation
 
@@ -80,6 +80,17 @@ let accordion = (function() {
         show,
     }
 })();
+```
+
+Modular attributee names
+
+```html
+<div accordion-space>
+    <!-- ... -->
+    <div accordion-item>
+        <!-- ... -->
+    </div>
+</div>
 ```
 
 ### 5. High UX Performance
