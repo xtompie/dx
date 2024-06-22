@@ -84,7 +84,7 @@ let accordion = (function() {
 
 ### 5. High UX Performance
 
-Instant initialization, seamless loading interface, ultra-responsive, and lightning-fast interaction.
+Instant initialization, seamless loading interface, responsive interaction.
 
 ```html
 <div accordion-space>
