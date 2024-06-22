@@ -31,7 +31,7 @@ var sender = (function() {
         let space = e.closest('[sender-space]');
         let selected = Array.from(space.all('[sender-option]:checked')).map(i => i.value);
         let fn = space.getAttribute('sender-success');
-        eval(`(${fn})(selected)`);d
+        eval(`(${fn})(selected)`);
     }
     return {
         all,
