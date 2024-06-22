@@ -28,6 +28,8 @@ State is stored in DOM. State is not stored in javascript variables.
 <span todo-item-text>Take out the trash</span>
 ```
 
+Alternatively, the state stored in HTMLElement.dataset
+
 ### 2. Event attibutes
 
 Events are set in html attributes. Events are not dynamic binded with addEventListener.
@@ -109,5 +111,6 @@ Instant initialization, seamless loading interface, ultra-responsive, and lightn
 - [Render](./render/)
 - [Sender](./sender/)
 - [Todo List](./todolist/)
+- [Visible](./visible/)
 
 To run examples clone this repo, go to repo in cli, run `php -S 127.0.0.1:8000`, open `127.0.0.1:8000` in browser.
