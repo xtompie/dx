@@ -113,4 +113,4 @@ Instant initialization, seamless loading interface, responsive interaction.
 - [Todo List](./todolist/)
 - [Visible](./visible/)
 
-To run examples clone this repo, go to repo in cli, run `php -S 127.0.0.1:8000`, open `127.0.0.1:8000` in browser.
+To run examples execute `composer serve`
