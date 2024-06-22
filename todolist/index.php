@@ -18,7 +18,6 @@ let todo = (function(){
     function add(ctx) {
         let space = ctx.up('[todo-space]');
         let item = space.tpl('[todo-item-tpl]')
-        console.log(item);
         item.one('[todo-item-text]').textContent = space.one('[todo-add-text]').value;
         space.one('[todo-add-text]').value = '';
         space.one('[todo-items]').append(item);
