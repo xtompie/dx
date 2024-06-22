@@ -117,6 +117,7 @@ Instant initialization, seamless loading interface, responsive interaction.
 ## Examples
 
 - [Accordion](./accordion/)
+- [Chat](./chat/)
 - [Condition](./condition/)
 - [Ra](./ra/)
 - [Render](./render/)

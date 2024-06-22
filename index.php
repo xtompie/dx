@@ -1,4 +1,5 @@
 <a href="accordion/">accordion</a> <br />
+<a href="chat/">chat</a> <br />
 <a href="condition/">condition</a> <br />
 <a href="ra/">ra</a> <br />
 <a href="render/">render</a> <br />
