@@ -7,16 +7,18 @@ This is about JavaScript in the UI context.
 It is 2024.
 We have fancy frameworks and build tools.
 They provide some functionality but also introduce a lot of new problems.
-The node_modules directory can take up to 1 GB of space.
-The built app.js file can be as large as 666 KB.
-You buy a new MacBook M1 and npm run install fails (node-sass).
-Sometimes npm run install fails due to C++ compilation errors.
+
+- The node_modules directory can take up to 1 GB of space.
+- The built app.js file can be as large as 666 KB.
+- You buy a new MacBook M1 and npm run install fails (node-sass).
+- Sometimes npm run install fails due to C++ compilation errors.
 I'm developing a dropdown in JS, so why is there C++ compilation involved? o.O
-There are framework features that you need to understand.
-Debugging may require additional tools.
-Over time, more data/elements will need to be handled and performance problems will arise.
-The very first time you deploy an application to production, your framework may be outdated and lacking the latest super functionality.
-You become locked into an old framework version and may remain there forever.
+- There are framework features that you need to understand.
+- Debugging may require additional tools.
+- Over time, more data/elements will need to be handled and performance problems will arise.
+- The very first time you deploy an application to production, your framework may be outdated and lacking the latest super functionality.
+- You become locked into an old framework version and may remain there forever.
+
 I think everyone can add their own experiences and challenges to this list.
 
 Maybe it's a low price for what we can have in return.
