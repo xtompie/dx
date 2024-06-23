@@ -8,13 +8,13 @@ It is 2024.
 We have fancy frameworks and build tools.
 They provide some functionality but also introduce a lot of new problems.
 
+- There are framework features that you need to understand.
+- Debugging may require additional tools.
 - The node_modules directory can take up to 1 GB of space.
 - The built app.js file can be as large as 666 KB.
 - You buy a new MacBook M1 and npm run install fails (node-sass).
 - Sometimes npm run install fails due to C++ compilation errors.
 I'm developing a dropdown in JS, so why is there C++ compilation involved? o.O
-- There are framework features that you need to understand.
-- Debugging may require additional tools.
 - Over time, more data/elements will need to be handled and performance problems will arise.
 - The very first time you deploy an application to production, your framework may be outdated and lacking the latest super functionality.
 - You become locked into an old framework version and may remain there forever.
@@ -22,11 +22,11 @@ I'm developing a dropdown in JS, so why is there C++ compilation involved? o.O
 I think everyone can add their own experiences and challenges to this list.
 
 Maybe it's a low price for what we can have in return.
-And in return (not always), we have a UI that takes 7 seconds to load.
+And often in return, we have a UI that takes 7 seconds to load.
 It consumes huge amounts of CPU resources.
 During the loading time, we see 9 different frames, elements are jumping, two different loading spinners,
 and one skeleton placeholder. By the way, the skeleton should never have been invented.
-Games often warn about photosensitive epilepsy, maybe websites should too?
+Games often warn about photosensitive epilepsy, maybe some websites should too?
 Then we need another code that will test component initialization time.
 
 Some can say that "todays applications are complicated". What exactly is complicated? Hidding div? Increment some value? Fetching and rendering data? Nope. It is easy.
@@ -166,7 +166,7 @@ Instant initialization, seamless loading interface, responsive interaction.
 
 ### Explanation
 
-The DX pattern is a UI layer that can invoke the business logic layer.
+The DX pattern is just an UI layer that can invoke the business logic layer.
 
 Build process is not required.
 Perhaps only the removal of comments and minification.
