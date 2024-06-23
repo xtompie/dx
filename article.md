@@ -185,13 +185,13 @@ app.cart = (function () {
     return {
         add,
     }
-});
+})();
 app.catalog = (function () {
     // ...
-});
+})();
 app.user = (function () {
     // ...
-});
+})();
 ```
 
 Each module can be stored in a separate file and loaded on the page only when needed.
