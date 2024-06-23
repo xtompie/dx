@@ -15,7 +15,8 @@ DX - JavaScript Architecture Pattern
 
 ### 1. DOM State
 
-State is stored in DOM. State is not stored in javascript variables.
+State is stored in the DOM.
+State is not stored in JavaScript variables.
 
 ```html
 <!-- attributes -->
@@ -28,11 +29,12 @@ State is stored in DOM. State is not stored in javascript variables.
 <span todo-item-text>Take out the trash</span>
 ```
 
-Or state stored in HTMLElement.dataset
+Or state can be stored in HTMLElement.dataset.
 
 ### 2. Event attibutes
 
-Events are set in html attributes. Events are not dynamic binded with addEventListener.
+Events are set in HTML attributes.
+Events are not dynamically bound with addEventListener.
 
 ```html
 <button onclick="todo.add(this)">Add</button>
@@ -40,7 +42,7 @@ Events are set in html attributes. Events are not dynamic binded with addEventLi
 
 ### 3. Action in context
 
-The event has a current DOMElement from which the operating space can be determined.
+The event has a current DOM element from which the operating space can be determined.
 
 ```html
 <script>
@@ -62,7 +64,7 @@ todo.add = function (ctx) {
 
 ### 4. Modularization
 
-Module Object and [Immediately Invoked Function Expression](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) for modularity and encapsulation
+Module Object and [Immediately Invoked Function Expression](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) for modularity and encapsulation.
 
 ```javascript
 let accordion = (function() {
