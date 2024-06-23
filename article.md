@@ -42,8 +42,8 @@ Even backend developers should be able to make simple changes or add new feature
 - Low number of dependencies.
 - Easy to debug.
 - Must be easy to maintain for years.
-- Instant UI initialization without jumping elements.
-- The page should show instantly, and users must be able to interact with the interface immediately.
+- The page should show instantly without jumping elements.
+  Users must be able to interact with the interface immediately.
 
 ## One of the solution: DX
 
