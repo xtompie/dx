@@ -84,7 +84,7 @@ let accordion = (function() {
 })();
 ```
 
-Modular attributee names
+Modular attributes names
 
 ```html
 <div accordion-space>
