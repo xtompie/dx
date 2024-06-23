@@ -36,7 +36,7 @@ let todo = (function(){
         output(space);
     }
     function output(space) {
-        let data = Array.from(space.all('[todo-item]')).map(item => ({
+        let data = space.all('[todo-item]').map(item => ({
             done: item.getAttribute('todo-item-status') === 'done',
             text: item.one('[todo-item-text]').textContent,
         }));
