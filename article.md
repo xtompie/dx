@@ -73,7 +73,7 @@ This is easy to track and understand.
 
 Something like theme can be set in `<body theme="light">` or `document.body.dataset.theme = 'light'`.
 
-### 2. Event attibutes
+### 2. Event attributes
 
 Events are set in HTML attributes.
 Events are not dynamically bound with addEventListener.

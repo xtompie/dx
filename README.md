@@ -5,7 +5,7 @@ DX - JavaScript Architecture Pattern
 - [DX](#dx)
   - [Foundation](#foundation)
     - [1. DOM State](#1-dom-state)
-    - [2. Event attibutes](#2-event-attibutes)
+    - [2. Event attributes](#2-event-attributes)
     - [3. Action in context](#3-action-in-context)
     - [4. Modularization](#4-modularization)
     - [5. High UX Performance](#5-high-ux-performance)
@@ -31,7 +31,7 @@ State is not stored in JavaScript variables.
 
 Or state can be stored in HTMLElement.dataset.
 
-### 2. Event attibutes
+### 2. Event attributes
 
 Events are set in HTML attributes.
 Events are not dynamically bound with addEventListener.
