@@ -28,7 +28,7 @@ State is stored in DOM. State is not stored in javascript variables.
 <span todo-item-text>Take out the trash</span>
 ```
 
-Alternatively, the state stored in HTMLElement.dataset
+Or state stored in HTMLElement.dataset
 
 ### 2. Event attibutes
 
