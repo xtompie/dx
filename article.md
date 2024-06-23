@@ -1,47 +1,47 @@
-# Current fronted is a scam
+# The Current Frontend is a Scam
 
-It is about JavaScript in UI context and not about CSS.
+This is about JavaScript in the UI context, not CSS.
 
-## The current picture
+## The Current Picture
 
 It is 2024.
 We have fancy frameworks and build tools.
-They give some functionality and a lot of of new problems.
-Directory node_module can take 1 GB.
-Built app.js can take 666 KB.
-You buy new MacBook M1 and npm run install fails (node-sass).
-Sometimes npm run install fails because C++ compilation fails.
-Im developing a dropdown in JS, why there is some C++ compliation? o.O
-Frameworks features that u need to understand.
-Debugging with additional tools.
-Performance issues when requirements about amount of data increase over time.
-When u go to production with your app, your framework is outdated and you dont have lates super functionalities.
-You are locked to old framework version and u will be there forever.
-I think everyone can add their own things here.
+They provide some functionality but also introduce a lot of new problems.
+The node_modules directory can take up to 1 GB of space.
+The built app.js file can be as large as 666 KB.
+You buy a new MacBook M1 and npm run install fails (node-sass).
+Sometimes npm run install fails due to C++ compilation errors.
+I'm developing a dropdown in JS, so why is there C++ compilation involved? o.O
+There are framework features that you need to understand.
+Debugging may require additional tools.
+Performance issues may arise when dealing with large amounts of data.
+When you deploy your app to production, your framework may be outdated and lack the latest super functionalities.
+You become locked into an old framework version and may remain there indefinitely.
+I believe everyone can add their own experiences and challenges to this list.
 
 Maybe it's a low price for what we can have in return.
-And in return (not always), we have an UI that takes 7 seconds to load.
+And in return (not always), we have a UI that takes 7 seconds to load.
 It consumes huge amounts of CPU resources.
-In loading time we see 9 different frames. Elements are jumping, two different loading spinners.
-One skeleton placeholder. Btw. skeleton should never been invented.
+During the loading time, we see 9 different frames, elements are jumping, two different loading spinners,
+and one skeleton placeholder. By the way, the skeleton should never have been invented.
 Games often warn about photosensitive epilepsy, maybe websites should too?
-Then we need to another code that will test components initialization time.
+Then we need another code that will test component initialization time.
 
-Some can say that "todays applications are complicated". What exacly is complicated? Hidding div? Increment some value? Fetching and rendering data? Nope. It is easy.
+Some can say that "todays applications are complicated". What exactly is complicated? Hidding div? Increment some value? Fetching and rendering data? Nope. It is easy.
 
 ## Architecture drivers
 
-Now lets defined the architecure drivers that we want.
+Now let's define the architecture drivers that we want:
 
-Easy build process or even no build.
-Simple codebase, easy to understand.
+- Easy build process or even no build.
+- Simple codebase, easy to understand.
 A new person in the project should be productive quickly.
-Even backend developer could do simple changes or add new features.
-Low number of dependecies.
-Easy to debug.
-Must be easy to maintain for years.
-Instant UI initialization without jumping elements.
-The page should show instatnly and user must be able to interact with the interface immediately.
+Even backend developers should be able to make simple changes or add new features.
+- Low number of dependencies.
+- Easy to debug.
+- Must be easy to maintain for years.
+- Instant UI initialization without jumping elements.
+- The page should show instantly, and users must be able to interact with the interface immediately.
 
 ## DX
 
@@ -51,8 +51,8 @@ DX - JavaScript Architecture Pattern
 
 ### 1. DOM State
 
-State is stored in DOM.
-State is not stored in javascript variables.
+State is stored in the DOM.
+State is not stored in JavaScript variables.
 
 ```html
 <!-- attributes -->
@@ -65,7 +65,7 @@ State is not stored in javascript variables.
 <span todo-item-text>Take out the trash</span>
 ```
 
-Or state stored in HTMLElement.dataset
+Or state can be stored in HTMLElement.dataset.
 
 This is easy to track and understand.
 
@@ -73,20 +73,18 @@ Something like theme can be set in `<body theme="light">` or `document.body.data
 
 ### 2. Event attibutes
 
-Events are set in html attributes.
-Events are not dynamic binded with addEventListener.
+Events are set in HTML attributes.
+Events are not dynamically bound with addEventListener.
 
 ```html
 <button onclick="todo.add(this)">Add</button>
 ```
 
-Setting event attributes eliminates binding code.
-What is happenig in application is easy to track.
-No need to bind listeners when appending html code to DOM.
+Setting event attributes eliminates the need for binding code. It makes it easier to track what is happening in the application. There is no need to bind listeners when appending HTML code to the DOM.
 
 ### 3. Action in context
 
-The event has a current DOMElement from which the operating space can be determined.
+The event has a current DOM element from which the operating space can be determined.
 
 ```html
 <script>
@@ -108,7 +106,7 @@ todo.add = function (ctx) {
 
 ### 4. Modularization
 
-Module Object and [Immediately Invoked Function Expression](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) for modularity and encapsulation
+Module Object and [Immediately Invoked Function Expression](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) for modularity and encapsulation.
 
 ```javascript
 let accordion = (function() {
@@ -166,17 +164,17 @@ Instant initialization, seamless loading interface, responsive interaction.
 
 ### Explanation
 
-Build process is not required. Maybe just the removal of comments and minification.
+Build process is not required. Perhaps only the removal of comments and minification.
 
-DX pattern is an UI layer. This layer can invoke the business logic layer.
+The DX pattern is a UI layer that can invoke the business logic layer.
 
-DX components can be specific like [todolist](https://github.com/xtompie/dx/tree/master/todolist) or more generic like [visible](https://github.com/xtompie/dx/blob/master/visible/).
+DX components can be specific, like the [todolist](https://github.com/xtompie/dx/tree/master/todolist), or more generic, like [visible](https://github.com/xtompie/dx/blob/master/visible/).
 
-The debug is easy. Stacktrace is complete and readable.
+Debugging is easy. The stack trace is complete and readable.
 
-The code is simple. For [sender](https://github.com/xtompie/dx/blob/master/sender/) component all sender function was generated by Copilot.
+The code is simple. For the [sender](https://github.com/xtompie/dx/blob/master/sender/) component, all sender functions were generated by Copilot.
 
-Pollution of the global scope can be minimized to one variable e.g.
+Pollution of the global scope can be minimized to one variable, e.g.
 
 ```javascript
 var app = app || {};
@@ -196,10 +194,10 @@ app.user = (function () {
 });
 ```
 
-Each module can be stored in separate file and load on page only when needed.
+Each module can be stored in a separate file and loaded on the page only when needed.
 
-DX has low cost and it is fast to develop.
+DX has a low cost and is fast to develop.
 
-DX is bad for CV driven development.
+DX is not suitable for CV-driven development.
 
-If you cant build SPA without framework the DX will be difficult for you with larger applications.
+If you can't build an SPA without a framework, DX will be challenging for you with larger applications.
