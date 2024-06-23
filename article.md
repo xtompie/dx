@@ -1,8 +1,8 @@
-# The Current Frontend is a Scam
+# The current frontend tech stack is a scam
 
 This is about JavaScript in the UI context, not CSS.
 
-## The Current Picture
+## The current situation
 
 It is 2024.
 We have fancy frameworks and build tools.
@@ -14,8 +14,8 @@ Sometimes npm run install fails due to C++ compilation errors.
 I'm developing a dropdown in JS, so why is there C++ compilation involved? o.O
 There are framework features that you need to understand.
 Debugging may require additional tools.
-Performance issues may arise when dealing with large amounts of data.
-When you deploy your app to production, your framework may be outdated and lack the latest super functionalities.
+Over time, more data/elements will need to be handled and performance problems will arise.
+The very first time you deploy an application to production, your framework may be outdated and lacking the latest super functionality.
 You become locked into an old framework version and may remain there indefinitely.
 I believe everyone can add their own experiences and challenges to this list.
 
