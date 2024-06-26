@@ -76,19 +76,4 @@ let todo = (function(){
         </div>
         <pre todo-output></pre>
     </div>
-    <div todo-space>
-        <template todo-item-tpl>
-            <div todo-item todo-item-status="">
-                <input type="checkbox" todo-item-checkbox onchange="todo.check(this)" />
-                <span todo-item-text></span>
-                <button onclick="todo.remove(this)">remove</button>
-            </div>
-        </template>
-        <div todo-items></div>
-        <div>
-            <input type="text" todo-add-text />
-            <button onclick="todo.add(this)">add</button>
-        </div>
-        <pre todo-output></pre>
-    </div>
 </div>
