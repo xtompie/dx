@@ -17,7 +17,7 @@ HTMLElement.prototype.all = function(s) {
     return Array.from(this.querySelectorAll(s));
 }
 HTMLElement.prototype.up = function(s) {
-    return this.closest(s);
+    return s ? this.closest(s) : this.parentNode;
 }
 HTMLElement.prototype.one = function(s) {
     return this.querySelector(s);
@@ -30,7 +30,7 @@ HTMLElement.prototype.component = function() {
 }
 HTMLElement.prototype.exec = function(name, ...args) {
     let prefix = this.component().attr('component');
-    eval(`${prefix}.${name}`).apply(null, [this, ...args]);
+    return eval(`${prefix}.${name}`).apply(this, args);
 }
 HTMLElement.prototype.emmit = function(name, ...args) {
     if (this !== this.component()) {
@@ -51,6 +51,28 @@ HTMLElement.prototype.allc = function(n) {
 HTMLElement.prototype.upc = function(name) {
     return this.matches(`[component="${name}"]`) ? this : this.closest(`[component="${name}"]`);
 }
+// HTMLElement.prototype.f = function() {
+//     if (!this._f) {
+//         this._f = new Proxy(this, {
+//             get: function(e, name) {
+//                 return (...args) => e.exec(name, ...args);
+//             }
+//         });
+//     }
+//     return this._f;
+// }
+Object.defineProperty(HTMLElement.prototype, 'fn', {
+    get: function() {
+        if (!this._fn) {
+            this._fn = new Proxy(this, {
+                get: function(target, name) {
+                    return (...args) => target.exec(name, ...args);
+                }
+            });
+        }
+        return this._fn;
+    }
+});
 document.one = function(s) {
     return document.querySelector(s);
 };

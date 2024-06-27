@@ -1,11 +1,11 @@
 <script>
 app.output = (function(){
-    function init(e, data) {
-        e.component().append(document.tpl('[app-output-tpl]'));
-        write(e, data);
+    function init(data) {
+        this.append(document.tpl('[app-output-tpl]'));
+        this.fn.write(data);
     }
-    function write(e, data) {
-        e.component().one('[app-output-display]').textContent = JSON.stringify(data, null, 4);
+    function write(data) {
+        this.one('[app-output-display]').textContent = JSON.stringify(data, null, 4);
     }
     return {
         init,

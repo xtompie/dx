@@ -1,16 +1,15 @@
 <script>
 app.todolist = (function(){
-    function init(e, data) {
-        let c = e.component();
-        c.onec('app.items').exec('init', data);
-        c.onec('app.input').exec('init');
-        c.onec('app.output').exec('init', data);
+    function init(data) {
+        this.onec('app.items').fn.init(data);
+        this.onec('app.input').fn.init();
+        this.onec('app.output').fn.init(data);
     }
-    function add(e, data) {
-        e.onec('app.items').exec('add', data);
+    function add(data) {
+        this.onec('app.items').fn.add(data);
     }
-    function update(e, data) {
-        e.onec('app.output').exec('write', data);
+    function update(data) {
+        this.onec('app.output').fn.write(data);
     }
     return {
         init,

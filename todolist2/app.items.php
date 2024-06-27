@@ -1,31 +1,32 @@
 <script>
 app.items = (function() {
-    function init(e, data) {
-        let c = e.component();
+    function init(data) {
+        let c = this.component();
         c.append(document.tpl('[app-items-tpl]'));
         data.each(i => append(c, i.text, i.done));
     }
-    function append(e, text, done) {
+    function add(text) {
+        let c = this.component();
+        append(c, text, false);
+        this.emmit('onchange', value(c));
+    }
+    function change() {
+        this.emmit('onchange', value(this));
+    }
+    function remove(item) {
+        item.remove();
+        this.emmit('onchange', value(this));
+    }
+    function value(c) {
+        return c.allc('app.item').map(item => item.fn.value());
+    }
+    function append(c, text, done) {
         let i = document.createElement('div');
         i.attr('component', 'app.item');
-        i.attr('onchange', "() => this.parentNode.exec('change')");
-        i.attr('onremove', "(e) => this.parentNode.exec('remove', e)");
-        e.component().one('[app-items-list]').append(i);
-        i.exec('init', text, done);
-    }
-    function add(e, text) {
-        append(e, text, false);
-        e.emmit('onchange', value(e));
-    }
-    function change(e) {
-        e.emmit('onchange', value(e.upc('app.items')));
-    }
-    function remove(e, item) {
-        item.remove();
-        e.emmit('onchange', value(e));
-    }
-    function value(e) {
-        return e.component().allc('app.item').map(item => app.item.value(item));
+        i.attr('onchange', "() => this.up().fn.change()");
+        i.attr('onremove', "() => this.up().fn.remove(this)");
+        c.one('[app-items-list]').append(i);
+        i.fn.init(text, done);
     }
     return {
         init,
