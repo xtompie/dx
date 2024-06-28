@@ -1,7 +1,7 @@
 <script>
 app.output = (function(){
     function init(data) {
-        this.append(document.tpl('[app-output-tpl]'));
+        this.append(document.one('[app-output-tpl]').tpl());
         this.fn.write(data);
     }
     function write(data) {

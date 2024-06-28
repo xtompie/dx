@@ -1,7 +1,7 @@
 <script>
 app.input = (function(){
     function init() {
-        this.append(document.tpl('[app-input-tpl]'));
+        this.append(document.one('[app-input-tpl]').tpl());
     }
     function add() {
         let input = this.component().one('[app-input-text]');

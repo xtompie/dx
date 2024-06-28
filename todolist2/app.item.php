@@ -6,7 +6,7 @@
 <script>
 app.item = (function(){
     function init(text, done) {
-        let t = document.tpl('[app-item-tpl]');
+        let t = document.one('[app-item-tpl]').tpl();
         t.one('[app-item-text]').textContent = text;
         t.one('[app-item-checkbox]').checked = done;
         this.append(t);

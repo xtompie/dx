@@ -2,7 +2,7 @@
 app.items = (function() {
     function init(data) {
         let c = this.component();
-        c.append(document.tpl('[app-items-tpl]'));
+        c.append(document.one('[app-items-tpl]').tpl());
         data.each(i => append(c, i.text, i.done));
     }
     function add(text) {

@@ -9,10 +9,10 @@
     <div component="app.items" onchange="(v) => this.up().fn.update(v)"></div>
     <div component="app.input" onadd="(v) => this.up().fn.add(v)"></div>
     <div component="app.output"></div>
-    <script>
-        document.currentScript.component().fn.init([
-            {"done": false, "text": "buy milk"},
-            {"done": true, "text": "throw out rubbish"}
-        ]);
-    </script>
 </div>
+<script>
+    document.onec('app.todolist').fn.init([
+        {"done": false, "text": "buy milk"},
+        {"done": true, "text": "throw out rubbish"}
+    ]);
+</script>

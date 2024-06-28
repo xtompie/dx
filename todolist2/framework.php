@@ -22,8 +22,8 @@ HTMLElement.prototype.up = function(s) {
 HTMLElement.prototype.one = function(s) {
     return this.querySelector(s);
 }
-HTMLElement.prototype.tpl = function(s) {
-    return this.one(s).content.cloneNode(true);
+HTMLElement.prototype.tpl = function() {
+    return this.content.cloneNode(true);
 }
 HTMLElement.prototype.component = function() {
     return this.matches('[component]') ? this : this.closest('[component]');
@@ -51,16 +51,6 @@ HTMLElement.prototype.allc = function(n) {
 HTMLElement.prototype.upc = function(name) {
     return this.matches(`[component="${name}"]`) ? this : this.closest(`[component="${name}"]`);
 }
-// HTMLElement.prototype.f = function() {
-//     if (!this._f) {
-//         this._f = new Proxy(this, {
-//             get: function(e, name) {
-//                 return (...args) => e.exec(name, ...args);
-//             }
-//         });
-//     }
-//     return this._f;
-// }
 Object.defineProperty(HTMLElement.prototype, 'fn', {
     get: function() {
         if (!this._fn) {
@@ -76,8 +66,14 @@ Object.defineProperty(HTMLElement.prototype, 'fn', {
 document.one = function(s) {
     return document.querySelector(s);
 };
-document.tpl = function(s) {
-    return document.one(s).content.cloneNode(true);
+document.onec = function(n) {
+    return document.querySelector(`[component="${n}"]`);
+};
+document.all = function(s) {
+    return Array.from(document.querySelectorAll(s));
+};
+document.allc = function(n) {
+    return Array.from(document.querySelectorAll(`[component="${n}"]`));
 };
 let app = {};
 </script>
