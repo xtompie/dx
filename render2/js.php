@@ -11,6 +11,7 @@ render2 = (function () {
         tpl.querySelectorAll('[render2]').forEach(function (e) {
             let f = e.getAttribute('render2');
             (function (d) { eval(f).call(null, d); }).bind(e)(data);
+            e.removeAttribute('render2');
         });
         return tpl;
     };
