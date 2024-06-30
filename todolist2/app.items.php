@@ -1,12 +1,12 @@
 <script>
 app.items = (function() {
     function init(data) {
-        let c = this.component();
+        let c = this.c();
         c.append(document.one('[app-items-tpl]').tpl());
         data.each(i => append(c, i.text, i.done));
     }
     function add(text) {
-        let c = this.component();
+        let c = this.c();
         append(c, text, false);
         this.emmit('onchange', value(c));
     }

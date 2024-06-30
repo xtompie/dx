@@ -25,19 +25,19 @@ HTMLElement.prototype.one = function(s) {
 HTMLElement.prototype.tpl = function() {
     return this.content.cloneNode(true);
 }
-HTMLElement.prototype.component = function() {
+HTMLElement.prototype.c = function() {
     return this.matches('[component]') ? this : this.closest('[component]');
 }
 HTMLElement.prototype.exec = function(name, ...args) {
-    let prefix = this.component().attr('component');
+    let prefix = this.c().attr('component');
     return eval(`${prefix}.${name}`).apply(this, args);
 }
 HTMLElement.prototype.emmit = function(name, ...args) {
-    if (this !== this.component()) {
-        this.component().emmit(name, ...args);
+    if (this !== this.c()) {
+        this.c().emmit(name, ...args);
         return;
     }
-    let fn = this.component().attr(name);
+    let fn = this.c().attr(name);
     if (fn) {
         eval(fn).apply(null, args);
     }

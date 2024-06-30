@@ -4,7 +4,7 @@ app.input = (function(){
         this.append(document.one('[app-input-tpl]').tpl());
     }
     function add() {
-        let input = this.component().one('[app-input-text]');
+        let input = this.c().one('[app-input-text]');
         let text = input.value;
         input.value = '';
         this.emmit('onadd', text);

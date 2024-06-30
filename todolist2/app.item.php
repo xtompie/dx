@@ -13,19 +13,19 @@ app.item = (function(){
         this.attr('app-item-status', done ? 'done' : '');
     }
     function check() {
-        let c = this.component();
+        let c = this.c();
         c.attr('app-item-status', c.one('[app-item-checkbox]').checked ? 'done' : '');
         this.emmit('onchange', this.fn.value());
     }
     function value() {
-        let c = this.component();
+        let c = this.c();
         return {
             done: c.attr('app-item-status') === 'done',
             text: c.one('[app-item-text]').textContent,
         };
     }
     function remove() {
-        this.emmit('onremove', this.component());
+        this.emmit('onremove', this.c());
     }
     return {
         init,
