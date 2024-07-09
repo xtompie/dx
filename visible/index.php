@@ -1,4 +1,3 @@
-<?php require_once '../prototype/prototype.php' ?>
 <?php require_once 'js.php' ?>
 <div visible-space visible-state="hide">
     <button  onclick="visible.toggle(this, 'hide', ['show'], ['hide'])">
