@@ -1,16 +1,5 @@
+<?php require_once '../helper/helper.php' ?>
 <script>
-HTMLElement.prototype.up = function(s) {
-    return this.closest(s);
-}
-HTMLElement.prototype.one = function(s) {
-    return this.querySelector(s);
-}
-HTMLElement.prototype.all = function(s) {
-    return Array.from(this.querySelectorAll(s));
-}
-Array.prototype.each = function(f) {
-    return this.forEach(f);
-}
 var sender = (function() {
     function all(e) {
         e.closest('[sender-space]').all('[sender-option]').each(i => i.checked = e.checked);

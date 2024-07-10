@@ -1,34 +1,6 @@
-<script>
-HTMLElement.prototype.up = function(s) {
-    return this.closest(s);
-}
-HTMLElement.prototype.one = function(s) {
-    return this.querySelector(s);
-}
-HTMLElement.prototype.all = function(s) {
-    return Array.from(this.querySelectorAll(s));
-}
-Array.prototype.each = function(f) {
-    return this.forEach(f);
-}
-let accordion = (function() {
-    function item(item) {
-        item.up('[accordion-space]').all(['[accordion-item]']).each(
-            i => i.querySelector(['[accordion-content]']).style.display = i === item ? '' : 'none'
-        );
-    }
-    function show(ctx) {
-        item(ctx.up('[accordion-item]'));
-    }
-    function init(ctx) {
-        item(ctx.up('[accordion-space]').one('[accordion-item]'));
-    }
-    return {
-        init,
-        show,
-    }
-})();
-</script>
+<script> module = {prefix: 'accordion'}; </script>
+<?php require 'accordion.php' ?>
+<script> let accordion = module; </script>
 
 <div accordion-space>
     <div accordion-item>

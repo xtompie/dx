@@ -1,5 +1,5 @@
 <script>
-render2 = (function () {
+module = (function(prefix) {
     function fragment(tpl, data) {
         if (Array.isArray(data)) {
            return data.reduce((acc, d) => {
@@ -8,10 +8,10 @@ render2 = (function () {
            }, document.createDocumentFragment());
         }
         tpl = document.querySelector(tpl).content.cloneNode(true);
-        tpl.querySelectorAll('[render2]').forEach(function (e) {
-            let f = e.getAttribute('render2');
+        tpl.querySelectorAll(`[${prefix}]`).forEach(function (e) {
+            let f = e.getAttribute(prefix);
             (function (d) { eval(f).call(null, d); }).bind(e)(data);
-            e.removeAttribute('render2');
+            e.removeAttribute(prefix);
         });
         return tpl;
     };
@@ -21,5 +21,5 @@ render2 = (function () {
         view.append(fragment(tpl, data));
     }
     return update;
-})();
+})(module.prefix || 'render');
 </script>

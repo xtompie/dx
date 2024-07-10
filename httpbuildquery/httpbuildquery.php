@@ -1,6 +1,5 @@
 <script>
-var dx = dx || {};
-dx.httpbuildquery = (function () {
+module = (function () {
     function walk (key, val) {
         var k, tmp = [];
         if (val === true) {

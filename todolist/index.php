@@ -1,23 +1,9 @@
+<?php require_once '../helper/helper.php' ?>
 <script>
-HTMLElement.prototype.up = function(s) {
-    return this.closest(s);
-}
-HTMLElement.prototype.one = function(s) {
-    return this.querySelector(s);
-}
-HTMLElement.prototype.all = function(s) {
-    return Array.from(this.querySelectorAll(s));
-}
-HTMLElement.prototype.tpl = function(s) {
-    return this.one(s).content.cloneNode(true);
-}
-DocumentFragment.prototype.one = function(s) {
-    return this.querySelector(s);
-}
 let todo = (function(){
     function add(ctx) {
         let space = ctx.up('[todo-space]');
-        let item = space.tpl('[todo-item-tpl]')
+        let item = space.one('[todo-item-tpl]').tpl();
         item.one('[todo-item-text]').textContent = space.one('[todo-add-text]').value;
         space.one('[todo-add-text]').value = '';
         space.one('[todo-items]').append(item);
@@ -27,7 +13,7 @@ let todo = (function(){
         let space = ctx.up('[todo-space]');
         let item = ctx.up('[todo-item]');
         let done = item.one('[todo-item-checkbox]').checked;
-        item.setAttribute('todo-item-status', done ? 'done' : '');
+        item.attr('todo-item-status', done ? 'done' : '');
         output(space);
     }
     function remove(ctx) {
@@ -37,7 +23,7 @@ let todo = (function(){
     }
     function output(space) {
         let data = space.all('[todo-item]').map(item => ({
-            done: item.getAttribute('todo-item-status') === 'done',
+            done: item.attr('todo-item-status') === 'done',
             text: item.one('[todo-item-text]').textContent,
         }));
         space.one('[todo-output]').textContent = JSON.stringify(data, null, 4);
