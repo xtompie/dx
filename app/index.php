@@ -9,7 +9,7 @@ app.shared = app.shared || {};
 <script> app.shared.val = module; </script>
 
 <script> module = {prefix: 'app-shared-render'}; </script>
-<?php require '../render/render.php' ?>
+<?php require '../render2/render.php' ?>
 <script> app.shared.render = module; </script>
 
 <script> module = {prefix: 'app-shared-visible'}; </script>
