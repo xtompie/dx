@@ -46,8 +46,8 @@ The event has a current DOM element from which the operating space can be determ
 
 ```html
 <script>
-todo.add = function (ctx) {
-    let space = ctx.closest('[todo-space]');
+todo.add = (ctx) => {
+    const space = ctx.closest('[todo-space]');
     // ...
     space.querySelector('[todo-add-text]').value = '';
 // ...
@@ -67,20 +67,20 @@ todo.add = function (ctx) {
 Module Object and [Immediately Invoked Function Expression](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) for modularity and encapsulation.
 
 ```javascript
-let accordion = (function() {
-    function item(item) {
+const accordion = (() => {
+    const item = (item) => {
         // ...
-    }
-    function show(ctx) {
+    };
+    const show = (ctx) => {
         // ...
-    }
-    function init(ctx) {
+    };
+    const init = (ctx) => {
         // ...
-    }
+    };
     return {
         init,
         show,
-    }
+    };
 })();
 ```
 
