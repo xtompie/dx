@@ -72,6 +72,8 @@ let ra = (function() {
         space.one('[ra-output]').textContent = JSON.stringify(output(space), null, 4);
         page(space, 'finished');
     }
+    let a = [];
+    a.each
     return {
         sub,
         add,
