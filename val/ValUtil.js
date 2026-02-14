@@ -6,7 +6,11 @@ HTMLElement.prototype.varr = function(data, tpl = null) {
     return Val.Arr(this, data, tpl);
 };
 HTMLElement.prototype.vget = function() {
-    return Val.Get(this);
+    if (this.hasAttribute('val')) {
+        return Val.Get(this);
+    } else {
+        return Val.Obj(this);
+    }
 }
 HTMLElement.prototype.vmodify = function(f) {
     Val.Modify(this, f);
@@ -28,14 +32,26 @@ HTMLElement.prototype.vrender = function(data, tpl = null) {
     return this;
 };
 HTMLElement.prototype.vset = function(data) {
-    Val.Set(this, data);
+    if (this.hasAttribute('val')) {
+        Val.Set(this, data);
+    } else {
+        Val.Obj(this, data);
+    }
     return this;
 };
 HTMLElement.prototype.vval = function(data) {
     if (arguments.length === 0) {
-        return Val.Get(this);
+        if (this.hasAttribute('val')) {
+            return Val.Get(this);
+        } else {
+            return Val.Obj(this);
+        }
     } else {
-        Val.Set(this, data);
+        if (this.hasAttribute('val')) {
+            Val.Set(this, data);
+        } else {
+            Val.Obj(this, data);
+        }
         return this;
     }
 };

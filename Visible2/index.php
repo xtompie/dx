@@ -1,6 +1,4 @@
-<script> module = {prefix: 'visible'}; </script>
-<?php require 'visible.php' ?>
-<script> let visible = module; </script>
+<?php require 'Visible.php' ?>
 
 <div visible-space visible-state="hide">
     <button  onclick="visible.toggle(this, 'hide', ['show'], ['hide'])">
