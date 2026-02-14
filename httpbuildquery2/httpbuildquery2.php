@@ -1,5 +1,5 @@
 <script>
-module = (function () {
+httpbuildquery = (function () {
     function walk (key, val) {
         var k, tmp = [];
         if (val === true) {
