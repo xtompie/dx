@@ -9,7 +9,6 @@ DX - JavaScript Architecture Pattern
     - [3. Action in context](#3-action-in-context)
     - [4. Modularization](#4-modularization)
     - [5. High UX Performance](#5-high-ux-performance)
-  - [Examples](#examples)
 
 ## Foundation
 
@@ -115,16 +114,3 @@ Instant initialization, seamless loading interface, responsive interaction.
     <script>accordion.init(document.currentScript)</script>
 </div>
 ```
-
-## Examples
-
-- [Accordion](./accordion/)
-- [Chat](./chat/)
-- [Condition](./condition/)
-- [Ra](./ra/)
-- [Render](./render/)
-- [Sender](./sender/)
-- [Todo List](./todolist/)
-- [Visible](./visible/)
-
-To run examples execute `composer serve`
