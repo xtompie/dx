@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HttpBuildQuery Test</title>
+</head>
+<body>
+    <h1>HttpBuildQuery Test</h1>
+    <p>Check console for results</p>
+
+    <script src="HttpBuildQuery.js"></script>
+    <script>
+        function test(name, input, expected) {
+            const result = HttpBuildQuery(input);
+            if (result === expected) {
+                console.log(`✓ ${name}`);
+                console.log(`  Result: ${result}`);
+            } else {
+                console.error(`✗ ${name}`);
+                console.error(`  Expected: ${expected}`);
+                console.error(`  Got: ${result}`);
+            }
+        }
+
+        console.log('Starting HttpBuildQuery tests...\n');
+
+        // Simple parameters
+        test('Simple parameters',
+            { a: 1, b: 2 },
+            'a=1&b=2'
+        );
+
+        test('String values',
+            { name: 'John', city: 'New York' },
+            'name=John&city=New%20York'
+        );
+
+        // Boolean conversion
+        test('Boolean true',
+            { active: true },
+            'active=1'
+        );
+
+        test('Boolean false',
+            { active: false },
+            'active=0'
+        );
+
+        // Nested objects
+        test('Nested object',
+            { user: { name: 'John', age: 30 } },
+            'user%5Bname%5D=John&user%5Bage%5D=30'
+        );
+
+        test('Deep nested object',
+            { user: { profile: { name: 'John' } } },
+            'user%5Bprofile%5D%5Bname%5D=John'
+        );
+
+        // Mixed types
+        test('Mixed types',
+            { str: 'hello', num: 42, bool: true, nested: { key: 'value' } },
+            'str=hello&num=42&bool=1&nested%5Bkey%5D=value'
+        );
+
+        // Empty and null
+        test('Empty object',
+            {},
+            ''
+        );
+
+        test('Null value (should be skipped)',
+            { a: 1, b: null, c: 3 },
+            'a=1&c=3'
+        );
+
+        test('Undefined value (should be skipped)',
+            { a: 1, b: undefined, c: 3 },
+            'a=1&c=3'
+        );
+
+        // Special characters
+        test('Special characters',
+            { key: 'a&b=c' },
+            'key=a%26b%3Dc'
+        );
+
+        // Numbers
+        test('Zero value',
+            { count: 0 },
+            'count=0'
+        );
+
+        test('Negative number',
+            { temp: -10 },
+            'temp=-10'
+        );
+
+        console.log('\nTests completed!');
+    </script>
+</body>
+</html>
