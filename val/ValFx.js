@@ -1,14 +1,26 @@
 Val.Fx = {};
 Val.Fx.Obj = {
-    Get: (el, params) => params.key ? { [params.key]: Val.Obj(el) } : Val.Obj(el),
-    Set: (el, data, params) => params.key ? Val.Obj(el, data[params.key]) : Val.Obj(el, data)
+    Get: (el, params) => {
+        const d = {};
+        el.allfd('[val]').forEach(e => Object.assign(d, Val.Get(e)));
+        return params.key ? { [params.key]: d } : d;
+    },
+    Set: (el, data, params) => {
+        const val = params.key ? data[params.key] : data;
+        if (val === undefined || val === null) return;
+        el.allfd('[val]').forEach(e => Val.Set(e, val));
+    }
 };
 Val.Fx.Arr = {
     Get: (el, params) => ({ [params.key]: Val.Arr(el) }),
     Set: (el, data, params) => Val.Arr(el, data[params.key], params.tpl)
 };
 Val.Fx.Render = {
-    Get: (el, params) => ({ [params.key]: Val.Obj(el) }),
+    Get: (el, params) => {
+        const d = {};
+        el.allfd('[val]').forEach(e => Object.assign(d, Val.Get(e)));
+        return { [params.key]: d };
+    },
     Set: (el, data, params) => Val.Render(el, params.tpl, data[params.key])
 };
 Val.Fx.Text = {
