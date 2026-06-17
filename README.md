@@ -9,6 +9,7 @@ DX - JavaScript Architecture Pattern
     - [3. Action in context](#3-action-in-context)
     - [4. Modularization](#4-modularization)
     - [5. High UX Performance](#5-high-ux-performance)
+  - [Component signature](#component-signature)
 
 ## Foundation
 
@@ -29,6 +30,15 @@ State is not stored in JavaScript variables.
 ```
 
 Or state can be stored in HTMLElement.dataset.
+
+State can also be a `_`-prefixed JS property on the element.
+
+```javascript
+el._timer = setTimeout(fn, 2000);
+clearTimeout(el._timer);
+```
+
+Read it off the element, not a module variable.
 
 ### 2. Event attributes
 
@@ -114,3 +124,18 @@ Instant initialization, seamless loading interface, responsive interaction.
     <script>accordion.init(document.currentScript)</script>
 </div>
 ```
+
+## Component signature
+
+The contract: the DOM skeleton (namespaced attributes + nesting) and the public functions.
+
+```html
+< todo-space>
+    < todo-item todo-item-status="done|active">
+        < onclick="todo.Toggle(this)">
+```
+
+- Indentation = nesting. Tag name omitted.
+- Attributes that hold state.
+- Public functions wired to events (`onclick="todo.Toggle(this)"`).
+- Public functions not wired to the DOM (called directly, e.g. a localStorage wrapper) — list them too.
