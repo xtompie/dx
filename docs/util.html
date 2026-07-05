@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin>
+<title>Util · DX</title>
+<meta name="description" content="Build modular, scalable frontends in plain HTML and JavaScript. No framework, no npm, no build step.">
+<meta property="og:title" content="Util">
+<meta property="og:description" content="Build modular, scalable frontends in plain HTML and JavaScript. No framework, no npm, no build step.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DX">
+<meta property="og:url" content="https://xtompie.github.io/dx/">
+<meta property="og:image" content="https://xtompie.github.io/dx/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xtompie.github.io/dx/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23f0883e'/><text x='16' y='22' font-family='ui-monospace,monospace' font-size='14' font-weight='700' letter-spacing='-1' fill='%23140c04' text-anchor='middle'>DX</text></svg>">
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="nav-bar"><a class="brand" href="index.html"><span class="mark">DX</span></a><button type="button" class="nav-toggle" onclick="Nav.Toggle(this)" aria-label="Menu" aria-expanded="false"><span class="nav-burger"></span></button></header>
+<div class="nav-scrim" onclick="Nav.Close(this)"></div>
+<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a class="active" href="util.html">Util</a><a href="val.html">Val</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="todo.html">Todo list</a><a href="filter.html">Filter</a><a href="produce.html">Produce</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="scaling.html">Scaling</a><a href="without-the-machinery.html">Without the machinery</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
+<main class="content"><h1 id="util">Util<a class="anchor" href="#util" aria-hidden="true">#</a></h1>
+<p>Helper methods on built-in objects like <code>HTMLElement</code> and <code>Array</code>.</p>
+<h2 id="without-util">Without Util<a class="anchor" href="#without-util" aria-hidden="true">#</a></h2>
+<pre><code class="hljs language-javascript"><span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'[todo-item]'</span>).forEach(<span class="hljs-function"><span class="hljs-params">el</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> status = el.getAttribute(<span class="hljs-string">'data-status'</span>);
+  el.setAttribute(<span class="hljs-string">'data-status'</span>, status === <span class="hljs-string">'done'</span> ? <span class="hljs-string">'active'</span> : <span class="hljs-string">'done'</span>);
+});</code></pre>
+<h2 id="with-util">With Util<a class="anchor" href="#with-util" aria-hidden="true">#</a></h2>
+<pre><code class="hljs language-javascript">dom.al(<span class="hljs-string">'[todo-item]'</span>).each(<span class="hljs-function"><span class="hljs-params">el</span> =&gt;</span> el.attrt(<span class="hljs-string">'data-status'</span>, <span class="hljs-string">'done'</span>, <span class="hljs-string">'active'</span>));</code></pre>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> dom = <span class="hljs-built_in">document</span>;
+<span class="hljs-built_in">document</span>.al = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">document</span>.querySelectorAll(s));
+};
+<span class="hljs-built_in">document</span>.one = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">document</span>.querySelector(s);
+};
+<span class="hljs-built_in">Array</span>.prototype.each = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.forEach(f);
+};
+<span class="hljs-built_in">Array</span>.prototype.any = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.length &gt; <span class="hljs-number">0</span>;
+};
+<span class="hljs-built_in">Array</span>.prototype.none = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.length === <span class="hljs-number">0</span>;
+};
+DocumentFragment.prototype.one = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.querySelector(s);
+};
+DocumentFragment.prototype.allfd = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">this</span>.children).reduce(<span class="hljs-function">(<span class="hljs-params">r, e</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> e.matches(s) ? r.concat(e) : r.concat(e.allfd(s));
+    }, []);
+}
+HTMLElement.prototype.all = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">this</span>.querySelectorAll(s));
+}
+HTMLElement.prototype.allfd = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">this</span>.children)
+        .filter(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> e <span class="hljs-keyword">instanceof</span> HTMLElement)
+        .reduce(<span class="hljs-function">(<span class="hljs-params">r, e</span>) =&gt;</span> {
+            <span class="hljs-keyword">return</span> e.matches(s) ? r.concat(e) : r.concat(e.allfd(s));
+        }, []);
+}
+HTMLElement.prototype.attr = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, v</span>) </span>{
+    <span class="hljs-keyword">if</span> (v === <span class="hljs-literal">undefined</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.getAttribute(a);
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (v === <span class="hljs-literal">null</span> || v === <span class="hljs-literal">false</span>) {
+        <span class="hljs-keyword">this</span>.removeAttribute(a);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.setAttribute(a, v);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+}
+HTMLElement.prototype.attrt = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, v1, v2</span>) </span>{
+    <span class="hljs-keyword">this</span>.attr(a, <span class="hljs-keyword">this</span>.attr(a) === v1 ? v2 : v1);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+HTMLElement.prototype.clear = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.innerHTML = <span class="hljs-string">''</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+HTMLElement.prototype.cls = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.classList;
+}
+HTMLElement.prototype.flag = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f, v = null</span>) </span>{
+    <span class="hljs-keyword">if</span> (v === <span class="hljs-literal">null</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.hasAttribute(f);
+    }
+    v === <span class="hljs-literal">true</span> ? <span class="hljs-keyword">this</span>.setAttribute(f, <span class="hljs-string">''</span>) : <span class="hljs-keyword">this</span>.removeAttribute(f);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+HTMLElement.prototype.hide = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v = true</span>) </span>{
+    <span class="hljs-keyword">this</span>.style.display = v === <span class="hljs-literal">true</span> ? <span class="hljs-string">'none'</span> : <span class="hljs-string">''</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+HTMLElement.prototype.one = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.querySelector(s);
+}
+HTMLElement.prototype.tpl = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.content.firstElementChild.cloneNode(<span class="hljs-literal">true</span>);
+}
+HTMLElement.prototype.show = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v = true</span>) </span>{
+    <span class="hljs-keyword">this</span>.style.display = v === <span class="hljs-literal">true</span> ? <span class="hljs-string">''</span> : <span class="hljs-string">'none'</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+HTMLElement.prototype.up = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>) </span>{
+    <span class="hljs-keyword">if</span> (s === <span class="hljs-literal">undefined</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.parentNode;
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.matches(s)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+    <span class="hljs-keyword">let</span> node = <span class="hljs-keyword">this</span>.closest(s);
+    <span class="hljs-keyword">if</span> (node) {
+        <span class="hljs-keyword">return</span> node;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">document</span>.body;
+}
+KeyboardEvent.prototype.combo = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">combo</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-keyword">this</span>.altKey ? <span class="hljs-string">'Alt+'</span> : <span class="hljs-string">''</span>}</span><span class="hljs-subst">${<span class="hljs-keyword">this</span>.ctrlKey ? <span class="hljs-string">'Ctrl+'</span> : <span class="hljs-string">''</span>}</span><span class="hljs-subst">${<span class="hljs-keyword">this</span>.metaKey ? <span class="hljs-string">'Meta+'</span> : <span class="hljs-string">''</span>}</span><span class="hljs-subst">${<span class="hljs-keyword">this</span>.shiftKey ? <span class="hljs-string">'Shift+'</span> : <span class="hljs-string">''</span>}</span><span class="hljs-subst">${<span class="hljs-keyword">this</span>.key}</span>`</span> === combo;
+};
+<span class="hljs-built_in">String</span>.prototype.cut = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">length</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.length &gt; length ? <span class="hljs-keyword">this</span>.substring(<span class="hljs-number">0</span>, length) + <span class="hljs-string">'...'</span> : <span class="hljs-keyword">this</span>;
+};</code></pre>
+<p class="doc-next"><a href="val.html">Next: Val →</a></p>
+</main>
+<script>
+// Mobile nav drawer — built the DX way: state in the DOM (body[nav-open]),
+// event in an HTML attribute, action in context (this), module as an IIFE.
+const Nav = (() => {
+  const Toggle = (ctx) => ctx.setAttribute('aria-expanded', document.body.toggleAttribute('nav-open'));
+  const Close  = () => { document.body.removeAttribute('nav-open'); document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false'); };
+  return { Toggle, Close };
+})();
+</script>
+</body>
+</html>

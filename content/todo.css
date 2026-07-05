@@ -1,0 +1,3 @@
+[todo-item]:has([todo-item-status="done"]) [todo-item-text] {
+    text-decoration: line-through;
+}

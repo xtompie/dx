@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin>
+<title>Without the machinery · DX</title>
+<meta name="description" content="Build modular, scalable frontends in plain HTML and JavaScript. No framework, no npm, no build step.">
+<meta property="og:title" content="Without the machinery">
+<meta property="og:description" content="Build modular, scalable frontends in plain HTML and JavaScript. No framework, no npm, no build step.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DX">
+<meta property="og:url" content="https://xtompie.github.io/dx/">
+<meta property="og:image" content="https://xtompie.github.io/dx/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xtompie.github.io/dx/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23f0883e'/><text x='16' y='22' font-family='ui-monospace,monospace' font-size='14' font-weight='700' letter-spacing='-1' fill='%23140c04' text-anchor='middle'>DX</text></svg>">
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="nav-bar"><a class="brand" href="index.html"><span class="mark">DX</span></a><button type="button" class="nav-toggle" onclick="Nav.Toggle(this)" aria-label="Menu" aria-expanded="false"><span class="nav-burger"></span></button></header>
+<div class="nav-scrim" onclick="Nav.Close(this)"></div>
+<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="todo.html">Todo list</a><a href="filter.html">Filter</a><a href="produce.html">Produce</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="scaling.html">Scaling</a><a class="active" href="without-the-machinery.html">Without the machinery</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
+<main class="content"><h1 id="without-the-machinery">Without the machinery<a class="anchor" href="#without-the-machinery" aria-hidden="true">#</a></h1>
+<h2 id="theme">Theme<a class="anchor" href="#theme" aria-hidden="true">#</a></h2>
+<p>Dark and light, one global bit of state, without the flash of unstyled content.</p>
+<h2 id="cross-widget-update">Cross-widget update<a class="anchor" href="#cross-widget-update" aria-hidden="true">#</a></h2>
+<p>A distant widget reacts to an action elsewhere, without Context, a store, or an event bus.</p>
+<h2 id="reacting-to-a-change">Reacting to a change<a class="anchor" href="#reacting-to-a-change" aria-hidden="true">#</a></h2>
+<p>Running local code when another module changes, declared in the markup.</p>
+<h2 id="a-list-from-data">A list from data<a class="anchor" href="#a-list-from-data" aria-hidden="true">#</a></h2>
+<p>A list rendered from an array, without tearing the DOM on each change.</p>
+<h2 id="live-data">Live data<a class="anchor" href="#live-data" aria-hidden="true">#</a></h2>
+<p>A server stream into the interface, without a store adapter.</p>
+<h2 id="forms">Forms<a class="anchor" href="#forms" aria-hidden="true">#</a></h2>
+<p>Reading and validating a whole form, without controlled-input boilerplate.</p>
+<h2 id="modals">Modals<a class="anchor" href="#modals" aria-hidden="true">#</a></h2>
+<p>Nested, linked modals, with one view reused as the picker.</p>
+</main>
+<script>
+// Mobile nav drawer — built the DX way: state in the DOM (body[nav-open]),
+// event in an HTML attribute, action in context (this), module as an IIFE.
+const Nav = (() => {
+  const Toggle = (ctx) => ctx.setAttribute('aria-expanded', document.body.toggleAttribute('nav-open'));
+  const Close  = () => { document.body.removeAttribute('nav-open'); document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false'); };
+  return { Toggle, Close };
+})();
+</script>
+</body>
+</html>

@@ -1,17 +1,15 @@
 const Visible = (function () {
-    const prefix = 'visible';
-
     function Visible(ctx, tags) {
-        const space = ctx.up(`[${prefix}-space]`);
-        space.all(`[${prefix}-tag]`).each(function (el) {
-            el.style.display = tags.includes(el.attr(`${prefix}-tag`)) ? '' : 'none';
+        const space = ctx.up('[visible-space]');
+        space.all('[visible-tag]').each(function (el) {
+            el.style.display = tags.includes(el.attr('visible-tag')) ? '' : 'none';
         });
-        space.attr(`${prefix}-state`, tags.join(' '));
+        space.attr('visible-state', tags.join(' '));
     }
 
     function Toggle(ctx, when, then, otherwise) {
-        const space = ctx.up(`[${prefix}-space]`);
-        Visible(space, space.attr(`${prefix}-state`).split(' ').includes(when) ? then : otherwise);
+        const space = ctx.up('[visible-space]');
+        Visible(space, space.attr('visible-state').split(' ').includes(when) ? then : otherwise);
     }
 
     return {
@@ -19,4 +17,3 @@ const Visible = (function () {
         Toggle,
     };
 })();
-

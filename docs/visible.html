@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin>
+<title>Visible · DX</title>
+<meta name="description" content="Build modular, scalable frontends in plain HTML and JavaScript. No framework, no npm, no build step.">
+<meta property="og:title" content="Visible">
+<meta property="og:description" content="Build modular, scalable frontends in plain HTML and JavaScript. No framework, no npm, no build step.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DX">
+<meta property="og:url" content="https://xtompie.github.io/dx/">
+<meta property="og:image" content="https://xtompie.github.io/dx/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xtompie.github.io/dx/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23f0883e'/><text x='16' y='22' font-family='ui-monospace,monospace' font-size='14' font-weight='700' letter-spacing='-1' fill='%23140c04' text-anchor='middle'>DX</text></svg>">
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="nav-bar"><a class="brand" href="index.html"><span class="mark">DX</span></a><button type="button" class="nav-toggle" onclick="Nav.Toggle(this)" aria-label="Menu" aria-expanded="false"><span class="nav-burger"></span></button></header>
+<div class="nav-scrim" onclick="Nav.Close(this)"></div>
+<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a></div><div class="nav-group"><div class="nav-title">Examples</div><a class="active" href="visible.html">Visible</a><a href="todo.html">Todo list</a><a href="filter.html">Filter</a><a href="produce.html">Produce</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="scaling.html">Scaling</a><a href="without-the-machinery.html">Without the machinery</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
+<main class="content"><h1 id="visible">Visible<a class="anchor" href="#visible" aria-hidden="true">#</a></h1>
+<p>Show one set of elements and hide the rest. The current mode is written to the DOM as <code>visible-state</code>. The active view is readable there, with no JavaScript variable holding it.</p>
+<p>Regions carry a <code>visible-tag</code> inside a shared <code>visible-space</code>. <code>Visible.Visible(ctx, tags)</code> shows every <code>[visible-tag]</code> listed in <code>tags</code>, hides the others, and writes <code>tags</code> to <code>visible-state</code>. <code>Visible.Toggle(ctx, when, then, otherwise)</code> reads that state. When it includes <code>when</code> the <code>then</code> set is shown, else the <code>otherwise</code> set.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> Visible = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Visible</span>(<span class="hljs-params">ctx, tags</span>) </span>{
+        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[visible-space]'</span>);
+        space.all(<span class="hljs-string">'[visible-tag]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">el</span>) </span>{
+            el.style.display = tags.includes(el.attr(<span class="hljs-string">'visible-tag'</span>)) ? <span class="hljs-string">''</span> : <span class="hljs-string">'none'</span>;
+        });
+        space.attr(<span class="hljs-string">'visible-state'</span>, tags.join(<span class="hljs-string">' '</span>));
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Toggle</span>(<span class="hljs-params">ctx, when, then, otherwise</span>) </span>{
+        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[visible-space]'</span>);
+        Visible(space, space.attr(<span class="hljs-string">'visible-state'</span>).split(<span class="hljs-string">' '</span>).includes(when) ? then : otherwise);
+    }
+
+    <span class="hljs-keyword">return</span> {
+        Visible,
+        Toggle,
+    };
+})();</code></pre>
+<h2 id="tabs">Tabs<a class="anchor" href="#tabs" aria-hidden="true">#</a></h2>
+<p>One panel shows at a time. Each button selects its tag.</p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">visible-space</span> <span class="hljs-attr">visible-state</span>=<span class="hljs-string">"account"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Visible.Visible(this, ['account'])"</span>&gt;</span>Account<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Visible.Visible(this, ['billing'])"</span>&gt;</span>Billing<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Visible.Visible(this, ['team'])"</span>&gt;</span>Team<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"account"</span>&gt;</span>Account settings.<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"billing"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:none"</span>&gt;</span>Billing details.<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"team"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:none"</span>&gt;</span>Team members.<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<h2 id="accordion">Accordion<a class="anchor" href="#accordion" aria-hidden="true">#</a></h2>
+<p>Each header toggles its panel. Opening one closes the rest.</p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">visible-space</span> <span class="hljs-attr">visible-state</span>=<span class="hljs-string">"shipping"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Visible.Toggle(this, 'shipping', [], ['shipping'])"</span>&gt;</span>Shipping<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"shipping"</span>&gt;</span>Ships in two days.<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Visible.Toggle(this, 'returns', [], ['returns'])"</span>&gt;</span>Returns<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"returns"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:none"</span>&gt;</span>Thirty day returns.<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<h2 id="radio-with-an-other-option">Radio with an &quot;Other&quot; option<a class="anchor" href="#radio-with-an-other-option" aria-hidden="true">#</a></h2>
+<p>The extra input shows only when Other is selected.</p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">visible-space</span> <span class="hljs-attr">visible-state</span>=<span class="hljs-string">""</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"reason"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Visible.Visible(this, [])"</span>&gt;</span> Refund<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"reason"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Visible.Visible(this, [])"</span>&gt;</span> Exchange<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"reason"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Visible.Visible(this, ['other'])"</span>&gt;</span> Other<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"other"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:none"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Tell us more"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<p class="doc-next"><a href="todo.html">Next: Todo list →</a></p>
+</main>
+<script>
+// Mobile nav drawer — built the DX way: state in the DOM (body[nav-open]),
+// event in an HTML attribute, action in context (this), module as an IIFE.
+const Nav = (() => {
+  const Toggle = (ctx) => ctx.setAttribute('aria-expanded', document.body.toggleAttribute('nav-open'));
+  const Close  = () => { document.body.removeAttribute('nav-open'); document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false'); };
+  return { Toggle, Close };
+})();
+</script>
+</body>
+</html>
