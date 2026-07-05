@@ -15,7 +15,7 @@ DX is an architecture pattern. Not a framework. Not a library. Plain HTML and Ja
 
 ## The idea behind it
 
-Its rules don't create the problems that later need frameworks, build systems, and always-changing mechanisms. The idea is that today's frontends are over-engineered, and that over-engineering isn't here. The extra complexity is gone, and what's left is what the interface actually does. Even so, what you build with it stays large, modular, and scalable.
+Its rules don't create the problems that later need frameworks, build systems, and always-changing mechanisms. The idea is that today's frontends are over-engineered, and that over-engineering isn't here. The extra complexity is gone, and what's left is what the interface actually does. Even so, what you build with it can still be large, modular, and scalable.
 
 ## What the docs cover
 
