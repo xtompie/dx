@@ -19,7 +19,7 @@ Its rules don't create the problems that later need frameworks, build systems, a
 
 ## What the docs cover
 
-First the foundations, the rules everything else builds on. Then the toolkits, Util and Val. Then complete examples to read and run. It ends with the larger topic, scaling.
+First the foundations, the rules everything else builds on. From there: toolkits to drop in, complete examples to read and run, and longer topics that dig deeper into specific subjects.
 
 ## Who it's for
 
