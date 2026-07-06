@@ -38,7 +38,8 @@ el.vget(); <span class="hljs-comment">// =&gt; { title: 'Dog', image: '/dog.jpg'
 <pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">val</span>
       <span class="hljs-attr">val-set</span>=<span class="hljs-string">"(data) =&gt; this.textContent = data.title"</span>
-      <span class="hljs-attr">val-get</span>=<span class="hljs-string">"() =&gt; ({ title: this.textContent })"</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-attr">val-get</span>=<span class="hljs-string">"() =&gt; ({ title: this.textContent })"</span>
+    &gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span></code></pre>
 <p>Two element methods drive the binding. <code>vset</code> writes an object into the marked subtree. <code>vget</code> reads the current state back.</p>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> article = dom.one(<span class="hljs-string">'article'</span>);
@@ -66,7 +67,8 @@ el.querySelector(<span class="hljs-string">'img'</span>).src = data.image;
 <pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">val</span>
       <span class="hljs-attr">val-set</span>=<span class="hljs-string">"(data) =&gt; this.textContent = data.title"</span>
-      <span class="hljs-attr">val-get</span>=<span class="hljs-string">"() =&gt; ({ title: this.textContent })"</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-attr">val-get</span>=<span class="hljs-string">"() =&gt; ({ title: this.textContent })"</span>
+  &gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span></code></pre>
 <pre><code class="hljs language-javascript">dom.one(<span class="hljs-string">'article'</span>).vset({ <span class="hljs-attr">title</span>: <span class="hljs-string">'Dog'</span> });</code></pre>
 <p>A getter and setter per field becomes repetitive across a page. <a href="#fx">Fx</a> remove that repetition.</p>

@@ -31,7 +31,8 @@ The `val` attribute marks an element for binding. Two attributes define what hap
 <article>
   <h1 val
       val-set="(data) => this.textContent = data.title"
-      val-get="() => ({ title: this.textContent })">Cat</h1>
+      val-get="() => ({ title: this.textContent })"
+    >Cat</h1>
 </article>
 ```
 
@@ -82,7 +83,8 @@ The element carries its own read and write rules. The script works with the obje
 <article>
   <h1 val
       val-set="(data) => this.textContent = data.title"
-      val-get="() => ({ title: this.textContent })">Cat</h1>
+      val-get="() => ({ title: this.textContent })"
+  >Cat</h1>
 </article>
 ```
 
