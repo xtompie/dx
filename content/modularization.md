@@ -39,7 +39,7 @@ const Accordion = (() => {
 
 The module name is also the attribute prefix. `Accordion` is the object. `accordion-*` is the markup. The object and the markup share one name.
 
-## Many on a page
+## Multiple instances
 
 The same module can be placed many times on one page. Each instance keeps its own state.
 

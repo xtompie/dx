@@ -90,7 +90,7 @@ In DX, an attribute marks the tab, a small function shows it, and `onclick` conn
 
 In React, the same click needs Node.js, npm, React and its build tooling installed, JSX as a syntax of its own to learn, a dev server running just to see the result, a root div for React to mount into, a component, knowledge of React itself and its rule that the DOM is never touched directly, a `useState` flag for whether the tab is open, and often a `useEffect` or a `useMemo` to keep the rest of the component from re-rendering more than it should. All of that is accidental complexity.
 
-## Built to expire
+## Constant change
 
 - Three module systems: CommonJS, then AMD, then native `import`/`export`. Packages still ship both.
 - 2014 — new Angular, no migration path from the old version.

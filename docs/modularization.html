@@ -38,7 +38,7 @@
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">accordion-item</span>&gt;</span> ... <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 <p>The module name is also the attribute prefix. <code>Accordion</code> is the object. <code>accordion-*</code> is the markup. The object and the markup share one name.</p>
-<h2 id="many-on-a-page">Many on a page<a class="anchor" href="#many-on-a-page" aria-hidden="true">#</a></h2>
+<h2 id="multiple-instances">Multiple instances<a class="anchor" href="#multiple-instances" aria-hidden="true">#</a></h2>
 <p>The same module can be placed many times on one page. Each instance keeps its own state.</p>
 <p>State is stored in the DOM. Each action finds its space from the current element. So two <code>accordion-space</code> blocks on one page do not share state. One is open while the other stays closed. There is no instance list and no id to track. A module is written once and placed as often as the page needs.</p>
 <h2 id="the-module-signature">The module signature<a class="anchor" href="#the-module-signature" aria-hidden="true">#</a></h2>

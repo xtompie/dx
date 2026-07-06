@@ -69,7 +69,7 @@ Anything else is a plain, page-wide selector.
 <div id="output"></div>
 ```
 
-## Example: tabs
+## Tabs
 
 Each button loads its own content into one shared container.
 
@@ -81,7 +81,7 @@ Each button loads its own content into one shared container.
 <div tab-content></div>
 ```
 
-## Example: load more
+## Load more
 
 The triggering `<li>` replaces itself with the response, which carries its own next-page trigger.
 

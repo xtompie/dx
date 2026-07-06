@@ -47,7 +47,7 @@ article.vget(); // => { title: 'Dog' }
 
 That is the whole mechanism. Everything else is convenience over these two calls.
 
-### Several things on one element
+### Multiple fields per element
 
 One `val-set` can do more than one thing to the element. It is plain code, so it sets content, an attribute, or anything else in the same call. `val-get` reads the same fields back.
 

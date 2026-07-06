@@ -60,7 +60,7 @@
 <p>A click that reveals a hidden tab is essential complexity. Something has to happen: the tab shows.</p>
 <p>In DX, an attribute marks the tab, a small function shows it, and <code>onclick</code> connects the two. Nothing else is needed.</p>
 <p>In React, the same click needs Node.js, npm, React and its build tooling installed, JSX as a syntax of its own to learn, a dev server running just to see the result, a root div for React to mount into, a component, knowledge of React itself and its rule that the DOM is never touched directly, a <code>useState</code> flag for whether the tab is open, and often a <code>useEffect</code> or a <code>useMemo</code> to keep the rest of the component from re-rendering more than it should. All of that is accidental complexity.</p>
-<h2 id="built-to-expire">Built to expire<a class="anchor" href="#built-to-expire" aria-hidden="true">#</a></h2>
+<h2 id="constant-change">Constant change<a class="anchor" href="#constant-change" aria-hidden="true">#</a></h2>
 <ul>
 <li>Three module systems: CommonJS, then AMD, then native <code>import</code>/<code>export</code>. Packages still ship both.</li>
 <li>2014 — new Angular, no migration path from the old version.</li>

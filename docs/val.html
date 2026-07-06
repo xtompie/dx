@@ -47,7 +47,7 @@ el.vget(); <span class="hljs-comment">// =&gt; { title: 'Dog', image: '/dog.jpg'
 article.vset({ <span class="hljs-attr">title</span>: <span class="hljs-string">'Dog'</span> });
 article.vget(); <span class="hljs-comment">// =&gt; { title: 'Dog' }</span></code></pre>
 <p>That is the whole mechanism. Everything else is convenience over these two calls.</p>
-<h3 id="several-things-on-one-element">Several things on one element<a class="anchor" href="#several-things-on-one-element" aria-hidden="true">#</a></h3>
+<h3 id="multiple-fields-per-element">Multiple fields per element<a class="anchor" href="#multiple-fields-per-element" aria-hidden="true">#</a></h3>
 <p>One <code>val-set</code> can do more than one thing to the element. It is plain code, so it sets content, an attribute, or anything else in the same call. <code>val-get</code> reads the same fields back.</p>
 <pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">val</span>
    <span class="hljs-attr">val-set</span>=<span class="hljs-string">"(data) =&gt; { this.textContent = data.label; this.setAttribute('href', data.url); }"</span>
