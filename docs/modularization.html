@@ -42,7 +42,7 @@
 <p>The same module can be placed many times on one page. Each instance keeps its own state.</p>
 <p>State is stored in the DOM. Each action finds its space from the current element. So two <code>accordion-space</code> blocks on one page do not share state. One is open while the other stays closed. There is no instance list and no id to track. A module is written once and placed as often as the page needs.</p>
 <h2 id="the-module-signature">The module signature<a class="anchor" href="#the-module-signature" aria-hidden="true">#</a></h2>
-<p>A module signature is the contract between the JavaScript and the HTML, without a type system. It lists the namespaced attributes, the values they hold, and the functions that run on them. Nesting matters: it shows which parts sit inside which, wherever a function depends on that hierarchy.</p>
+<p>A module signature is the contract between the JavaScript and the HTML, without a type system. It lists the namespaced attributes, the values they hold, and the functions that run on them. Nesting matters: it shows which parts are inside which, wherever a function depends on that hierarchy.</p>
 <pre><code class="hljs language-xml"><span class="hljs-tag">&lt; <span class="hljs-attr">todo-space</span>&gt;</span>
     <span class="hljs-tag">&lt; <span class="hljs-attr">todo-item</span> <span class="hljs-attr">todo-item-status</span>=<span class="hljs-string">"done|active"</span>&gt;</span>
         <span class="hljs-tag">&lt; <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Todo.Toggle(this)"</span>&gt;</span>
@@ -52,11 +52,11 @@ Todo.Save()</code></pre>
 <p>A module keeps state in attributes, and CSS can target those same attributes directly. The JavaScript reads and writes the attribute, and the CSS styles from it, so a restyle needs no change to the JavaScript. A class name that the JavaScript also sets would couple the two to the same name instead.</p>
 <pre><code class="hljs language-css"><span class="hljs-selector-attr">[todo-item]</span><span class="hljs-selector-attr">[todo-item-status=<span class="hljs-string">"done"</span>]</span> { <span class="hljs-attribute">opacity</span>: .<span class="hljs-number">5</span>; <span class="hljs-attribute">text-decoration</span>: line-through; }</code></pre>
 <h2 id="why">Why<a class="anchor" href="#why" aria-hidden="true">#</a></h2>
-<p><strong>No module system to set up.</strong>
+<p>No module system to set up.
 A module is a plain object returned by an IIFE. There is no <code>import</code> graph, no bundler
 deciding what ships, no registration step. A module is defined and it is there. Add a
 module by adding a script; remove it by deleting one.</p>
-<p><strong>Globals, on purpose.</strong>
+<p>Globals, on purpose.
 Modules live on the global scope, and that is the point: no IoC container, no event bus, no
 indirection nobody asked for. The prefix is the whole convention that keeps names apart,
 the same way BEM keeps CSS class names apart, by agreement, not by tooling. Modules can

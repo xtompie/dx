@@ -41,7 +41,7 @@
 
     <span class="hljs-keyword">return</span> { Filter };
 })();</code></pre>
-<p>The input is marked with <code>filter-query</code>. The handler goes up to the space and reads that element, so it never assumes it was called from the input itself. The trigger can sit on the input, on a button next to it, or anywhere inside the space.</p>
+<p>The input is marked with <code>filter-query</code>. The handler goes up to the space and reads that element, so it never assumes it was called from the input itself. The trigger can be on the input, on a button next to it, or anywhere inside the space.</p>
 <p>Each item carries its search text in the <code>filter-item</code> attribute. The query matches that value, not the visible text. So an item can match words it does not show, like a category. Typing <code>fruit</code> keeps Apple, Banana, and Cherry.</p>
 <div class="filter-demo">
 <div filter-space>

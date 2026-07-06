@@ -11,7 +11,7 @@ status: draft
 
 # Produce
 
-Nothing here is new. [Visible](visible.html), [Filter](filter.html), [Val](val.html), and a small script on load — each was shown on its own. This page only puts them together. A screen like this is not built from scratch. It is composed from pieces that already exist.
+Nothing here is new. [Visible](visible.html), [Filter](filter.html), [Val](val.html), and a small script on load. Each was shown on its own. It is composed from pieces that already exist.
 
 <!-- include: content/produce.html -->
 

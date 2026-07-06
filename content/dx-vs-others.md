@@ -52,7 +52,7 @@ In DX, the page is already real HTML. It is the same page for a browser and for 
 
 A new developer joins the project and needs to read the code and start making changes.
 
-Picking up a React, Vue, or Angular codebase means learning its rendering model, its hooks or reactivity rules, its state-management library, its routing library, its build tooling, before any of it touches business logic. None of it transfers to the next project, or even to this one two major versions later. The app itself carries extra complexity on top: solving problems the framework introduces, and following its particular style for solving them. That design is bespoke to whoever built it, and the framework does not teach it.
+Picking up a React, Vue, or Angular codebase means learning its rendering model, its hooks or reactivity rules, its state-management library, its routing library, its build tooling, before any of it touches business logic. None of it transfers to the next project, or even to this one two major versions later. The app itself carries extra complexity on top: solving problems the framework introduces, and following its particular style for solving them. That design is specific to whoever built it, and the framework does not teach it.
 
 In DX, the code is plain HTML and plain JavaScript. State is visible directly in the browser's Elements panel, not inside a framework's internal store. The mechanisms are generic and reused everywhere: understanding [Visible](visible.html) once already covers tabs, accordions, dropdowns, and modals. There is no separate architecture to reverse-engineer on top.
 
@@ -60,7 +60,7 @@ In DX, the code is plain HTML and plain JavaScript. State is visible directly in
 
 How fast the page responds depends on how much JavaScript has to download, parse, and run before anything works.
 
-React's runtime is its own tax before any business logic runs at all: itself and ReactDOM as a baseline, a router, a state library, a UI kit, icons, easily past 500KB before the app does anything. On top of that: code-splitting with `React.lazy`, tree-shaking that quietly fails on non-ESM packages, hydration adding its own gap between the page looking ready and the page actually responding to a click.
+React's runtime adds its own weight before any business logic runs at all: itself and ReactDOM as a baseline, a router, a state library, a UI kit, icons, easily past 500KB before the app does anything. On top of that: code-splitting with `React.lazy`, tree-shaking that quietly fails on non-ESM packages, hydration adding its own gap between the page looking ready and the page actually responding to a click.
 
 In DX, there is no runtime to download, parse, or hydrate. The HTML the browser already parsed is the interactive page.
 

@@ -45,7 +45,7 @@ exports = { prefix: <span class="hljs-string">'billing'</span> };
 <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> file_get_contents(<span class="hljs-string">'tabs.js'</span>) <span class="hljs-meta">?&gt;</span>
 App.Billing = exports;</code></pre>
 <h2 id="global-reclamation">Global reclamation<a class="anchor" href="#global-reclamation" aria-hidden="true">#</a></h2>
-<p>jQuery sets <code>window.jQuery</code> and <code>window.$</code> when it loads. Both names sit in the global
+<p>jQuery sets <code>window.jQuery</code> and <code>window.$</code> when it loads. Both names are in the global
 scope, open to a collision with anything else that wants <code>$</code>.</p>
 <pre><code class="hljs language-javascript">App.jQuery = jQuery;
 <span class="hljs-keyword">delete</span> <span class="hljs-built_in">window</span>.$;

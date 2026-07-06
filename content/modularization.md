@@ -47,7 +47,7 @@ State is stored in the DOM. Each action finds its space from the current element
 
 ## The module signature
 
-A module signature is the contract between the JavaScript and the HTML, without a type system. It lists the namespaced attributes, the values they hold, and the functions that run on them. Nesting matters: it shows which parts sit inside which, wherever a function depends on that hierarchy.
+A module signature is the contract between the JavaScript and the HTML, without a type system. It lists the namespaced attributes, the values they hold, and the functions that run on them. Nesting matters: it shows which parts are inside which, wherever a function depends on that hierarchy.
 
 ```
 < todo-space>
@@ -67,12 +67,12 @@ A module keeps state in attributes, and CSS can target those same attributes dir
 
 ## Why
 
-**No module system to set up.**
+No module system to set up.
 A module is a plain object returned by an IIFE. There is no `import` graph, no bundler
 deciding what ships, no registration step. A module is defined and it is there. Add a
 module by adding a script; remove it by deleting one.
 
-**Globals, on purpose.**
+Globals, on purpose.
 Modules live on the global scope, and that is the point: no IoC container, no event bus, no
 indirection nobody asked for. The prefix is the whole convention that keeps names apart,
 the same way BEM keeps CSS class names apart, by agreement, not by tooling. Modules can

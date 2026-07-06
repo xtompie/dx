@@ -34,7 +34,7 @@
 <li><code>hx-disable</code> stops the element from triggering a request at all.</li>
 </ul>
 <h2 id="event-binding">Event binding<a class="anchor" href="#event-binding" aria-hidden="true">#</a></h2>
-<p><code>hx(this, event)</code> sits in the event attribute, the same as any DX handler. <code>event</code> is optional. It is needed to stop a <code>&lt;form&gt;</code>, an <code>&lt;a&gt;</code>, or a <code>&lt;button&gt;</code> inside a <code>&lt;form&gt;</code> from also doing its own submit or navigation.</p>
+<p><code>hx(this, event)</code> is set in the event attribute, the same as any DX handler. <code>event</code> is optional. It is needed to stop a <code>&lt;form&gt;</code>, an <code>&lt;a&gt;</code>, or a <code>&lt;button&gt;</code> inside a <code>&lt;form&gt;</code> from also doing its own submit or navigation.</p>
 <h2 id="native-semantics">Native semantics<a class="anchor" href="#native-semantics" aria-hidden="true">#</a></h2>
 <p>A plain <code>&lt;a href&gt;</code> sends a GET to that URL, with no <code>hx-*</code> attribute needed. A plain <code>&lt;form&gt;</code> sends a POST to its <code>action</code>, or to the current URL if <code>action</code> is missing, with its fields serialized.</p>
 <h2 id="selectors">Selectors<a class="anchor" href="#selectors" aria-hidden="true">#</a></h2>

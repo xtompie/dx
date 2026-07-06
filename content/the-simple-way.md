@@ -49,7 +49,7 @@ App.Billing = exports;
 
 ## Global reclamation
 
-jQuery sets `window.jQuery` and `window.$` when it loads. Both names sit in the global
+jQuery sets `window.jQuery` and `window.$` when it loads. Both names are in the global
 scope, open to a collision with anything else that wants `$`.
 
 ```javascript

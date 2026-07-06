@@ -44,22 +44,22 @@ appears. An inline script initializes just this instance, anchored to
 
 ## Why
 
-**Interactive as soon as it parses.**
+Interactive as soon as it parses.
 There is no framework runtime to download and run before anything works. The HTML is the
 UI and the state is already in it, so the page responds the moment the browser reads it.
 Nothing has to boot first.
 
-**No hydration.**
+No hydration.
 The markup the server sent is already live. There is no client-side render that re-runs the
 UI to attach it, so there is no window where the page looks ready but does not answer.
 Server-side rendering is not a feature to add, since there was never a client render to undo.
 
-**Sections initialize themselves in place.**
+Sections initialize themselves in place.
 An inline `<script>` sets up its own section using `document.currentScript` as the anchor.
 There is no global "wait for `DOMContentLoaded`, then query the whole document" pass. Each
-part comes alive where it sits, as the page streams in.
+part comes alive in place, as the page streams in.
 
-**Interaction is a direct DOM write.**
+Interaction is a direct DOM write.
 A handler changes the element it already has, with no diff, no re-render pass, and no
 scheduler between the click and the change. The update is as immediate as the code that
 makes it.

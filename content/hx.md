@@ -32,7 +32,7 @@ Hx covers a subset of htmx.
 
 ## Event binding
 
-`hx(this, event)` sits in the event attribute, the same as any DX handler. `event` is optional. It is needed to stop a `<form>`, an `<a>`, or a `<button>` inside a `<form>` from also doing its own submit or navigation.
+`hx(this, event)` is set in the event attribute, the same as any DX handler. `event` is optional. It is needed to stop a `<form>`, an `<a>`, or a `<button>` inside a `<form>` from also doing its own submit or navigation.
 
 ## Native semantics
 
