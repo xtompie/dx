@@ -18,26 +18,27 @@
 <body>
 <header class="nav-bar"><a class="brand" href="index.html"><span class="mark">DX</span></a><button type="button" class="nav-toggle" onclick="Nav.Toggle(this)" aria-label="Menu" aria-expanded="false"><span class="nav-burger"></span></button></header>
 <div class="nav-scrim" onclick="Nav.Close(this)"></div>
-<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a class="active" href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="todo.html">Todo list</a><a href="filter.html">Filter</a><a href="produce.html">Produce</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="scaling.html">Scaling</a><a href="without-the-machinery.html">Without the machinery</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
+<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a class="active" href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a><a href="hx.html">Hx</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="todo.html">Todo list</a><a href="filter.html">Filter</a><a href="produce.html">Produce</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="the-simple-way.html">The simple way</a><a href="dx-vs-others.html">DX vs Others</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
 <main class="content"><h1 id="action-in-context">Action in context<a class="anchor" href="#action-in-context" aria-hidden="true">#</a></h1>
 <p>The event has a current DOM element from which the operating space can be determined.</p>
-<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">todo-space</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">todo-add-text</span> /&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Todo.Add(this)"</span>&gt;</span>Add<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">counter-space</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">counter-value</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Counter.Increment(this)"</span>&gt;</span>+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-Todo.Add = <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> space = ctx.closest(<span class="hljs-string">'[todo-space]'</span>);
-  space.querySelector(<span class="hljs-string">'[todo-add-text]'</span>).value = <span class="hljs-string">''</span>;
-  <span class="hljs-comment">// ...</span>
+Counter.Increment = <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> space = ctx.closest(<span class="hljs-string">'[counter-space]'</span>);
+  <span class="hljs-keyword">const</span> value = space.querySelector(<span class="hljs-string">'[counter-value]'</span>);
+  value.textContent = <span class="hljs-built_in">Number</span>(value.textContent) + <span class="hljs-number">1</span>;
 };
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <h2 id="why">Why<a class="anchor" href="#why" aria-hidden="true">#</a></h2>
 <p><strong>One function serves every instance.</strong>
-The same <code>Todo.Add</code> runs for one todo list or a hundred on the page. Nothing is created
-per widget: no instance, no component object, no per-copy state. The context is worked
-out at click time from <em>where</em> the event happened, so one piece of code covers them all.</p>
+The same <code>Counter.Increment</code> runs for one counter or a hundred on the page. Nothing is
+created per widget: no instance, no component object, no per-copy state. The context is
+worked out at click time from <em>where</em> the event happened, so one piece of code covers
+them all.</p>
 <p><strong>The element is passed in, not captured.</strong>
 The handler receives the triggering element as an argument. There is no <code>this</code> to bind,
 no closure holding the right scope, no lookup to figure out which copy was clicked. The

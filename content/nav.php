@@ -17,6 +17,7 @@ return [
     'Toolkits' => [
         ['Util', 'util.html'],   // helper methods on built-in objects
         ['Val', 'val.html'],     // two-way binding between an object and the DOM
+        ['Hx', 'hx.html'],       // htmx-style attributes wired to one function
     ],
     // Complete, working things to read — smallest first.
     'Examples' => [
@@ -27,7 +28,7 @@ return [
     ],
     // Longer, article-style write-ups on deeper subjects. Prose with small code blocks.
     'Topics' => [
-        ['Scaling', 'scaling.html'],
-        ['Without the machinery', 'without-the-machinery.html'],
+        ['The simple way', 'the-simple-way.html'],
+        ['DX vs Others', 'dx-vs-others.html'],
     ],
 ];

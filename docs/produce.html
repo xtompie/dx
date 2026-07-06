@@ -18,7 +18,7 @@
 <body>
 <header class="nav-bar"><a class="brand" href="index.html"><span class="mark">DX</span></a><button type="button" class="nav-toggle" onclick="Nav.Toggle(this)" aria-label="Menu" aria-expanded="false"><span class="nav-burger"></span></button></header>
 <div class="nav-scrim" onclick="Nav.Close(this)"></div>
-<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="todo.html">Todo list</a><a href="filter.html">Filter</a><a class="active" href="produce.html">Produce</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="scaling.html">Scaling</a><a href="without-the-machinery.html">Without the machinery</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
+<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a><a href="hx.html">Hx</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="todo.html">Todo list</a><a href="filter.html">Filter</a><a class="active" href="produce.html">Produce</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="the-simple-way.html">The simple way</a><a href="dx-vs-others.html">DX vs Others</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
 <main class="content"><h1 id="produce">Produce<a class="anchor" href="#produce" aria-hidden="true">#</a></h1>
 <p>Nothing here is new. <a href="visible.html">Visible</a>, <a href="filter.html">Filter</a>, <a href="val.html">Val</a>, and a small script on load — each was shown on its own. This page only puts them together. A screen like this is not built from scratch. It is composed from pieces that already exist.</p>
 <pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">produce-space</span> <span class="hljs-attr">filter-space</span> <span class="hljs-attr">visible-space</span> <span class="hljs-attr">visible-state</span>=<span class="hljs-string">"category"</span>&gt;</span>
@@ -29,8 +29,8 @@
             <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:none"</span>&gt;</span>Show category<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">produce-list</span> <span class="hljs-attr">val-tpl</span>=<span class="hljs-string">"#produce-row"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"produce-row"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">produce-list</span> <span class="hljs-attr">val-tpl</span>=<span class="hljs-string">"[produce-row-tpl]"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">produce-row-tpl</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Pattr"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"match"</span> <span class="hljs-attr">val-attr</span>=<span class="hljs-string">"filter-item"</span> <span class="hljs-attr">hidden</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
@@ -49,9 +49,9 @@
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> Produce = <span class="hljs-function">(<span class="hljs-params">(</span>) =&gt;</span> {
     <span class="hljs-keyword">const</span> Init = <span class="hljs-function">(<span class="hljs-params">ctx, items</span>) =&gt;</span> {
-        ctx.up(<span class="hljs-string">'[produce-space]'</span>)
-            .one(<span class="hljs-string">'[produce-list]'</span>)
-            .vappend(items.map(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> ({ ...p, <span class="hljs-attr">match</span>: <span class="hljs-string">`<span class="hljs-subst">${p.name}</span> <span class="hljs-subst">${p.category}</span>`</span> })));
+        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[produce-space]'</span>);
+        space.one(<span class="hljs-string">'[produce-list]'</span>)
+            .vappend(items.map(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> ({ ...p, <span class="hljs-attr">match</span>: <span class="hljs-string">`<span class="hljs-subst">${p.name}</span> <span class="hljs-subst">${p.category}</span>`</span> })), space.one(<span class="hljs-string">'[produce-row-tpl]'</span>));
     };
 
     <span class="hljs-keyword">return</span> { Init };
@@ -380,9 +380,9 @@ const Filter = (() => {
 <script>
 const Produce = (() => {
     const Init = (ctx, items) => {
-        ctx.up('[produce-space]')
-            .one('[produce-list]')
-            .vappend(items.map(p => ({ ...p, match: `${p.name} ${p.category}` })));
+        const space = ctx.up('[produce-space]');
+        space.one('[produce-list]')
+            .vappend(items.map(p => ({ ...p, match: `${p.name} ${p.category}` })), space.one('[produce-row-tpl]'));
     };
 
     return { Init };
@@ -397,8 +397,8 @@ const Produce = (() => {
             <span visible-tag="hidden" style="display:none">Show category</span>
         </button>
     </div>
-    <ul produce-list val-tpl="#produce-row"></ul>
-    <template id="produce-row">
+    <ul produce-list val-tpl="[produce-row-tpl]"></ul>
+    <template produce-row-tpl>
         <li filter-item>
             <i val val-fx="Pattr" val-key="match" val-attr="filter-item" hidden></i>
             <span val val-fx="Text" val-key="name"></span>
@@ -417,7 +417,7 @@ const Produce = (() => {
 </div>
 
 </div>
-<p class="doc-next"><a href="scaling.html">Next: Scaling →</a></p>
+<p class="doc-next"><a href="the-simple-way.html">Next: The simple way →</a></p>
 </main>
 <script>
 // Mobile nav drawer — built the DX way: state in the DOM (body[nav-open]),

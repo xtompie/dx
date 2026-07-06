@@ -47,31 +47,23 @@ State is stored in the DOM. Each action finds its space from the current element
 
 ## The module signature
 
-A module signature is a compact form of the contract. It lists the DOM skeleton, which is the namespaced attributes and their nesting, and the public functions.
+A module signature is the contract between the JavaScript and the HTML, without a type system. It lists the namespaced attributes, the values they hold, and the functions that run on them. Nesting matters: it shows which parts sit inside which, wherever a function depends on that hierarchy.
 
 ```
-<todo-space>
-    <todo-item todo-item-status="done|active">
-        <onclick="Todo.Toggle(this)">
+< todo-space>
+    < todo-item todo-item-status="done|active">
+        < onclick="Todo.Toggle(this)">
 
 Todo.Save()
 ```
 
-Indentation is nesting. The tag name is left out, and only the attributes that matter are shown. Attributes that hold state list their possible values. Public functions appear where they wire into the DOM, as in `onclick="Todo.Toggle(this)"`. A function called from JavaScript instead of the DOM is listed on its own, as with `Todo.Save()`.
-
-The signature is a contract without a type system. It shows the shape a module expects and the functions it exposes. It is the readable form of the attribute namespace, and the one thing to share or ask for to see what a module does.
-
 ## Styling through the contract
 
-A module keeps state and structure in attributes. CSS can target those same attributes.
+A module keeps state in attributes, and CSS can target those same attributes directly. The JavaScript reads and writes the attribute, and the CSS styles from it, so a restyle needs no change to the JavaScript. A class name that the JavaScript also sets would couple the two to the same name instead.
 
 ```css
 [todo-item][todo-item-status="done"] { opacity: .5; text-decoration: line-through; }
 ```
-
-A common approach stores UI state in class names that the JavaScript also sets. The CSS and the JavaScript then depend on the same names. A design change that renames a class also requires a change in the JavaScript.
-
-In DX the attribute is the contract. The JavaScript reads and writes the attribute. The CSS styles from it. A restyle needs no change to the JavaScript, even when the design system changes.
 
 ## Why
 
@@ -83,4 +75,5 @@ module by adding a script; remove it by deleting one.
 **Globals, on purpose.**
 Modules live on the global scope, and that is the point: no IoC container, no event bus, no
 indirection nobody asked for. The prefix is the whole convention that keeps names apart,
-the same way BEM keeps CSS class names apart, by agreement, not by tooling.
+the same way BEM keeps CSS class names apart, by agreement, not by tooling. Modules can
+also nest under one object, as deep as a project wants.

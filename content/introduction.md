@@ -13,6 +13,8 @@ status: draft
 
 DX is an architecture pattern. Not a framework. Not a library. Plain HTML and JavaScript. Little code to write. No extra layer. Nothing to learn beyond HTML and JavaScript. Scales to large frontends.
 
+DX does not say how to build, bundle, or deploy the code that reaches the page.
+
 ## The idea behind it
 
 Its rules don't create the problems that later need frameworks, build systems, and always-changing mechanisms. The idea is that today's frontends are over-engineered, and that over-engineering isn't here. The extra complexity is gone, and what's left is what the interface actually does. Even so, what you build with it can still be large, modular, and scalable.

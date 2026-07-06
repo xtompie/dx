@@ -15,16 +15,16 @@ status: draft
 The event has a current DOM element from which the operating space can be determined.
 
 ```html
-<div todo-space>
-  <input type="text" todo-add-text />
-  <button onclick="Todo.Add(this)">Add</button>
+<div counter-space>
+  <span counter-value>0</span>
+  <button onclick="Counter.Increment(this)">+1</button>
 </div>
 
 <script>
-Todo.Add = (ctx) => {
-  const space = ctx.closest('[todo-space]');
-  space.querySelector('[todo-add-text]').value = '';
-  // ...
+Counter.Increment = (ctx) => {
+  const space = ctx.closest('[counter-space]');
+  const value = space.querySelector('[counter-value]');
+  value.textContent = Number(value.textContent) + 1;
 };
 </script>
 ```
@@ -32,9 +32,10 @@ Todo.Add = (ctx) => {
 ## Why
 
 **One function serves every instance.**
-The same `Todo.Add` runs for one todo list or a hundred on the page. Nothing is created
-per widget: no instance, no component object, no per-copy state. The context is worked
-out at click time from *where* the event happened, so one piece of code covers them all.
+The same `Counter.Increment` runs for one counter or a hundred on the page. Nothing is
+created per widget: no instance, no component object, no per-copy state. The context is
+worked out at click time from *where* the event happened, so one piece of code covers
+them all.
 
 **The element is passed in, not captured.**
 The handler receives the triggering element as an argument. There is no `this` to bind,
