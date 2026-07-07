@@ -43,7 +43,7 @@ body.landing::after {
 .nav-title { font-size:.68rem; font-weight:600; text-transform:uppercase; letter-spacing:.11em; color:var(--muted); margin:1.9rem .5rem .8rem; padding-top:1.4rem; border-top:1px solid var(--line); }
 .nav a { display:block; color:var(--body); text-decoration:none; padding:.27rem .5rem; border-radius:.5rem; font-size:.9rem; transition:background .12s,color .12s; }
 .nav a:hover { background:var(--soft); color:var(--ink); }
-.nav a.active { background:var(--soft); color:var(--ink); font-weight:600; }
+.nav a.active { background:var(--soft); color:var(--ink); }
 
 /* content */
 .content { flex:1; max-width:calc(var(--max) + 8rem); padding:3.75rem 4rem 6rem; margin:0 auto; min-width:0; }
