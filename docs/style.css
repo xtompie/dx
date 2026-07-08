@@ -226,7 +226,7 @@ body.landing h3 + p { margin:0 0 0; color:var(--body); }
 
 /* Live demo widget — blueprint look, matching the home page preview. Scoped under
    .todo-demo so it never touches the page around it. Uses the shared theme variables. */
-.todo-demo, .filter-demo, .produce-demo, .kanban-demo, .tictactoe-demo, .cells-demo, .tir-demo {
+.todo-demo, .filter-demo, .produce-demo, .kanban-demo, .tictactoe-demo, .cells-demo {
   --demo-accent:#5a80e6;
   position:relative; border:1px solid var(--line); border-radius:var(--r-lg);
   padding:2.6rem 1.6rem 1.6rem; margin:1.75rem 0;
@@ -234,7 +234,7 @@ body.landing h3 + p { margin:0 0 0; color:var(--body); }
   background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
   background-size:15px 15px;
 }
-.todo-demo::before, .filter-demo::before, .produce-demo::before::before, .kanban-demo::before, .tictactoe-demo::before, .cells-demo::before, .tir-demo::before {
+.todo-demo::before, .filter-demo::before, .produce-demo::before, .kanban-demo::before, .tictactoe-demo::before, .cells-demo::before {
   content:"PREVIEW"; position:absolute; top:.75rem; left:1rem;
   font-size:.62rem; font-weight:700; letter-spacing:.13em; color:var(--muted);
 }
