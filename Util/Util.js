@@ -48,6 +48,19 @@ HTMLElement.prototype.attrt = function(a, v1, v2) {
     this.attr(a, this.attr(a) === v1 ? v2 : v1);
     return this;
 }
+HTMLElement.prototype.attrs = function(prefix, values) {
+    if (values === undefined) {
+        const pre = prefix === undefined ? '' : prefix + '-';
+        const out = {};
+        for (const a of this.attributes) {
+            if (a.name.startsWith(pre)) out[a.name.slice(pre.length)] = a.value;
+        }
+        return out;
+    }
+    const pre = prefix + '-';
+    Object.entries(values).each(([k, v]) => this.setAttribute(pre + k, v));
+    return this;
+}
 HTMLElement.prototype.clear = function() {
     this.innerHTML = '';
     return this;

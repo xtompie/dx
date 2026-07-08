@@ -13,15 +13,16 @@ status: draft
 
 Nothing here is new. [Visible](visible.html), [Filter](filter.html), [Val](val.html), and a small script on load. Each was shown on its own. It is composed from pieces that already exist.
 
-<!-- include: content/produce.html -->
-
-<!-- include: content/Produce.js -->
-
-<!-- include-js: Util/Util.js -->
-<!-- include-js: Val/Val.js -->
-<!-- include-js: Visible/Visible.js -->
-<!-- include-js: content/Filter.js -->
-<!-- include-js: content/Produce.js -->
+<!-- embed: Util/Util.js -->
+<!-- embed: Val/Val.js -->
+<!-- embed: Visible/Visible.js -->
+<!-- embed: Filter/Filter.js -->
+<!-- embed: content/Produce.js -->
 <div class="produce-demo">
-<!-- include-html: content/produce.html -->
+<!-- embed: content/produce.html -->
 </div>
+<!-- embed: content/produce.css -->
+
+<!-- code: content/produce.html -->
+
+<!-- code: content/Produce.js -->

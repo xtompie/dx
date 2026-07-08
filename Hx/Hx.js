@@ -46,7 +46,7 @@ const hx = (() => {
 
     const createTask = el => {
         const [method, url] = resolveMethodAndUrl(el);
-        const target = findTarget(el, param(el, 'hx-target'));
+        const target = findTarget(el);
         if (!method || !url || !target) return null;
 
         const body = buildBody(el, method);
@@ -92,15 +92,18 @@ const hx = (() => {
         };
     };
 
-    const param = (el, name) => el.getAttribute(name) || el.closest(`[${name}]`)?.getAttribute(name) || null;
+    const param = (el, name) => attrOwner(el, name)?.getAttribute(name) || null;
 
-    const findTarget = (el, descriptor) => {
-        return queryElements(el, descriptor)[0] || null;
+    const attrOwner = (el, name) => el.closest(`[${name}]`);
+
+    const findTarget = el => {
+        const owner = attrOwner(el, 'hx-target') || el;
+        return queryElements(owner, owner.getAttribute('hx-target'))[0] || null;
     };
 
     const findIndicator = el => {
-        const selector = param(el, 'hx-indicator');
-        return queryElements(el, selector)[0] || null;
+        const owner = attrOwner(el, 'hx-indicator');
+        return owner ? queryElements(owner, owner.getAttribute('hx-indicator'))[0] || null : null;
     };
 
     const show = el => {
@@ -118,7 +121,7 @@ const hx = (() => {
         if (!content || !target?.parentNode) return;
 
         if (swap === 'outerHTML') {
-            target.outerHTML = content.firstElementChild?.outerHTML || '';
+            target.replaceWith(...content.children);
         } else if (swap === 'append') {
             target.append(...content.children);
         } else if (swap === 'prepend') {

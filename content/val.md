@@ -4,7 +4,7 @@ title: "Val"
 
 # Val
 
-In DX a screen updates by swapping whole HTML fragments. Working with values is the exception, used only when a swap cannot do the job. Val is that exception: two-way binding between a JavaScript object and the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). An element is marked, an object is written to it, and the same object is read back.
+In DX a screen updates by swapping a whole HTML fragment. A swap is the simplest and fastest way to update, so it comes first. When a swap cannot do the job, the work happens on individual values. Val is for that: two-way binding between a JavaScript object and the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). An element is marked, an object is written to it, and the same object is read back.
 
 <!-- source: Val/Val.js -->
 
@@ -245,13 +245,13 @@ article.vget();
 `val-tpl` holds a CSS selector. Val passes its value to `document.querySelector` to find the template. The template must hold exactly one root element, since Val clones its first element child for each item.
 
 ```html
-<template id="tag-item">
+<template tag-item>
   <li val val-fx="Text" val-key="name"></li>
 </template>
 
 <article>
   <h1 val val-fx="Text" val-key="title">Cat</h1>
-  <ul val val-fx="Arr" val-key="tags" val-tpl="#tag-item"></ul>
+  <ul val val-fx="Arr" val-key="tags" val-tpl="[tag-item]"></ul>
 </article>
 ```
 
@@ -292,18 +292,18 @@ list.vprepend([{ name: 'new' }]);
 `val-fx="Render"` clears an element and renders a single object from a template. It returns to empty when the value is missing.
 
 ```html
-<template id="badge-card">
+<template badge-card>
   <span val val-fx="Text" val-key="label"></span>
 </template>
 
-<div val val-fx="Render" val-key="badge" val-tpl="#badge-card"></div>
+<div val val-fx="Render" val-key="badge" val-tpl="[badge-card]"></div>
 ```
 
 ```javascript
 const box = dom.one('[val-key="badge"]');
 
 box.vset({ badge: { label: 'new' } });       // renders the card
-box.vrender({ label: 'sale' }, '#badge-card'); // renders one object directly
+box.vrender({ label: 'sale' }, '[badge-card]'); // renders one object directly
 ```
 
 ## Custom fx

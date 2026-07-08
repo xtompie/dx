@@ -18,44 +18,9 @@
 <body>
 <header class="nav-bar"><a class="brand" href="index.html"><span class="mark">DX</span></a><button type="button" class="nav-toggle" onclick="Nav.Toggle(this)" aria-label="Menu" aria-expanded="false"><span class="nav-burger"></span></button></header>
 <div class="nav-scrim" onclick="Nav.Close(this)"></div>
-<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a><a href="hx.html">Hx</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="todo.html">Todo list</a><a href="filter.html">Filter</a><a class="active" href="produce.html">Produce</a><a href="tic-tac-toe.html">Tic-tac-toe</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="the-simple-way.html">The simple way</a><a href="dx-vs-others.html">DX vs Others</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
+<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a><a href="hx.html">Hx</a><a href="notify.html">Notify</a><a href="rensen.html">Rensen</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="filter.html">Filter</a><a href="todo.html">Todo list</a><a class="active" href="produce.html">Produce</a><a href="tic-tac-toe.html">Tic-tac-toe</a><a href="kanban.html">Kanban</a><a href="cells.html">Cells</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="the-simple-way.html">The simple way</a><a href="dx-vs-others.html">DX vs Others</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
 <main class="content"><h1 id="produce">Produce<a class="anchor" href="#produce" aria-hidden="true">#</a></h1>
 <p>Nothing here is new. <a href="visible.html">Visible</a>, <a href="filter.html">Filter</a>, <a href="val.html">Val</a>, and a small script on load. Each was shown on its own. It is composed from pieces that already exist.</p>
-<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">produce-space</span> <span class="hljs-attr">filter-space</span> <span class="hljs-attr">visible-space</span> <span class="hljs-attr">visible-state</span>=<span class="hljs-string">"category"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">filter-query</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">oninput</span>=<span class="hljs-string">"Filter.Filter(this)"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Visible.Toggle(this, 'category', ['hidden'], ['category'])"</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"category"</span>&gt;</span>Hide category<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:none"</span>&gt;</span>Show category<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">produce-list</span> <span class="hljs-attr">val-tpl</span>=<span class="hljs-string">"[produce-row-tpl]"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">produce-row-tpl</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Pattr"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"match"</span> <span class="hljs-attr">val-attr</span>=<span class="hljs-string">"filter-item"</span> <span class="hljs-attr">hidden</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"category"</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"category"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-        Produce.Init(<span class="hljs-built_in">document</span>.currentScript, [
-            { <span class="hljs-attr">name</span>: <span class="hljs-string">'Apple'</span>,  <span class="hljs-attr">category</span>: <span class="hljs-string">'Fruit'</span> },
-            { <span class="hljs-attr">name</span>: <span class="hljs-string">'Banana'</span>, <span class="hljs-attr">category</span>: <span class="hljs-string">'Fruit'</span> },
-            { <span class="hljs-attr">name</span>: <span class="hljs-string">'Cherry'</span>, <span class="hljs-attr">category</span>: <span class="hljs-string">'Fruit'</span> },
-            { <span class="hljs-attr">name</span>: <span class="hljs-string">'Carrot'</span>, <span class="hljs-attr">category</span>: <span class="hljs-string">'Vegetable'</span> },
-            { <span class="hljs-attr">name</span>: <span class="hljs-string">'Potato'</span>, <span class="hljs-attr">category</span>: <span class="hljs-string">'Vegetable'</span> },
-        ]);
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> Produce = <span class="hljs-function">(<span class="hljs-params">(</span>) =&gt;</span> {
-    <span class="hljs-keyword">const</span> Init = <span class="hljs-function">(<span class="hljs-params">ctx, items</span>) =&gt;</span> {
-        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[produce-space]'</span>);
-        space.one(<span class="hljs-string">'[produce-list]'</span>)
-            .vappend(items.map(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> ({ ...p, <span class="hljs-attr">match</span>: <span class="hljs-string">`<span class="hljs-subst">${p.name}</span> <span class="hljs-subst">${p.category}</span>`</span> })), space.one(<span class="hljs-string">'[produce-row-tpl]'</span>));
-    };
-
-    <span class="hljs-keyword">return</span> { Init };
-})();</code></pre>
 <script>
 const dom = document;
 document.al = function(s) {
@@ -105,6 +70,19 @@ HTMLElement.prototype.attr = function(a, v) {
 }
 HTMLElement.prototype.attrt = function(a, v1, v2) {
     this.attr(a, this.attr(a) === v1 ? v2 : v1);
+    return this;
+}
+HTMLElement.prototype.attrs = function(prefix, values) {
+    if (values === undefined) {
+        const pre = prefix === undefined ? '' : prefix + '-';
+        const out = {};
+        for (const a of this.attributes) {
+            if (a.name.startsWith(pre)) out[a.name.slice(pre.length)] = a.value;
+        }
+        return out;
+    }
+    const pre = prefix + '-';
+    Object.entries(values).each(([k, v]) => this.setAttribute(pre + k, v));
     return this;
 }
 HTMLElement.prototype.clear = function() {
@@ -344,33 +322,38 @@ HTMLElement.prototype.vval = function (data) {
 };
 </script>
 <script>
-const Visible = (function () {
-    function Visible(ctx, tags) {
-        const space = ctx.up('[visible-space]');
-        space.all('[visible-tag]').each(function (el) {
-            el.style.display = tags.includes(el.attr('visible-tag')) ? '' : 'none';
+const Visible = (() => {
+    const up = (el, sel) => el.matches(sel) ? el : el.closest(sel);
+
+    const Visible = (ctx, tags) => {
+        const space = up(ctx, '[visible-space]');
+        const lane = space.getAttribute('visible-lane');
+        const selector = lane ? `[visible-tag][visible-lane="${lane}"]` : '[visible-tag]';
+        space.querySelectorAll(selector).forEach(el => {
+            el.style.display = tags.includes(el.getAttribute('visible-tag')) ? '' : 'none';
         });
-        space.attr('visible-state', tags.join(' '));
-    }
-
-    function Toggle(ctx, when, then, otherwise) {
-        const space = ctx.up('[visible-space]');
-        Visible(space, space.attr('visible-state').split(' ').includes(when) ? then : otherwise);
-    }
-
-    return {
-        Visible,
-        Toggle,
+        space.setAttribute('visible-state', tags.join(' '));
     };
+
+    const Toggle = (ctx, when, then, otherwise) => {
+        const space = up(ctx, '[visible-space]');
+        Visible(space, space.getAttribute('visible-state').split(' ').includes(when) ? then : otherwise);
+    };
+
+    return { Visible, Toggle };
 })();
 </script>
 <script>
 const Filter = (() => {
+    const up = (el, sel) => el.matches(sel) ? el : el.closest(sel);
+
     const Filter = (ctx) => {
-        const space = ctx.up('[filter-space]');
-        const query = space.one('[filter-query]').value.trim().toLowerCase();
-        space.all('[filter-item]').each(el => {
-            el.show(el.attr('filter-item').toLowerCase().includes(query));
+        const space = up(ctx, '[filter-space]');
+        const lane = space.getAttribute('filter-lane');
+        const query = space.querySelector('[filter-query]').value.trim().toLowerCase();
+        const selector = lane ? `[filter-item][filter-lane="${lane}"]` : '[filter-item]';
+        space.querySelectorAll(selector).forEach(el => {
+            el.style.display = el.getAttribute('filter-item').toLowerCase().includes(query) ? '' : 'none';
         });
     };
 
@@ -417,6 +400,62 @@ const Produce = (() => {
 </div>
 
 </div>
+<style>
+.produce-demo [produce-space] { display:flex; flex-direction:column; gap:.6rem; max-width:24rem; margin:0 auto; }
+.produce-demo [produce-space] > div { display:flex; gap:.5rem; }
+.produce-demo input {
+  flex:1; background:var(--code-bg); border:1px solid var(--line); border-radius:var(--r-sm);
+  color:var(--ink); font:inherit; padding:.5rem .65rem; outline:none; transition:border-color .12s ease;
+}
+.produce-demo input:focus { border-color:var(--demo-accent); }
+.produce-demo button {
+  font:inherit; font-size:.88rem; cursor:pointer; border-radius:var(--r-sm); border:1px solid var(--line);
+  background:transparent; color:var(--muted); padding:.42rem .8rem; white-space:nowrap; transition:color .12s ease, border-color .12s ease;
+}
+.produce-demo button:hover { color:var(--body); border-color:var(--muted); }
+.produce-demo [produce-list] { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.35rem; }
+.produce-demo [produce-list] li {
+  display:flex; justify-content:space-between; align-items:baseline; gap:1rem;
+  padding:.45rem .65rem; background:var(--soft); border:1px solid var(--line);
+  border-radius:var(--r-sm); color:var(--ink);
+}
+.produce-demo [produce-list] [visible-tag="category"] { color:var(--muted); font-size:.85rem; }
+</style>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">produce-space</span> <span class="hljs-attr">filter-space</span> <span class="hljs-attr">visible-space</span> <span class="hljs-attr">visible-state</span>=<span class="hljs-string">"category"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">filter-query</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">oninput</span>=<span class="hljs-string">"Filter.Filter(this)"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Visible.Toggle(this, 'category', ['hidden'], ['category'])"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"category"</span>&gt;</span>Hide category<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:none"</span>&gt;</span>Show category<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">produce-list</span> <span class="hljs-attr">val-tpl</span>=<span class="hljs-string">"[produce-row-tpl]"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">produce-row-tpl</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Pattr"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"match"</span> <span class="hljs-attr">val-attr</span>=<span class="hljs-string">"filter-item"</span> <span class="hljs-attr">hidden</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"category"</span> <span class="hljs-attr">visible-tag</span>=<span class="hljs-string">"category"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+        Produce.Init(<span class="hljs-built_in">document</span>.currentScript, [
+            { <span class="hljs-attr">name</span>: <span class="hljs-string">'Apple'</span>,  <span class="hljs-attr">category</span>: <span class="hljs-string">'Fruit'</span> },
+            { <span class="hljs-attr">name</span>: <span class="hljs-string">'Banana'</span>, <span class="hljs-attr">category</span>: <span class="hljs-string">'Fruit'</span> },
+            { <span class="hljs-attr">name</span>: <span class="hljs-string">'Cherry'</span>, <span class="hljs-attr">category</span>: <span class="hljs-string">'Fruit'</span> },
+            { <span class="hljs-attr">name</span>: <span class="hljs-string">'Carrot'</span>, <span class="hljs-attr">category</span>: <span class="hljs-string">'Vegetable'</span> },
+            { <span class="hljs-attr">name</span>: <span class="hljs-string">'Potato'</span>, <span class="hljs-attr">category</span>: <span class="hljs-string">'Vegetable'</span> },
+        ]);
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> Produce = <span class="hljs-function">(<span class="hljs-params">(</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> Init = <span class="hljs-function">(<span class="hljs-params">ctx, items</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[produce-space]'</span>);
+        space.one(<span class="hljs-string">'[produce-list]'</span>)
+            .vappend(items.map(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> ({ ...p, <span class="hljs-attr">match</span>: <span class="hljs-string">`<span class="hljs-subst">${p.name}</span> <span class="hljs-subst">${p.category}</span>`</span> })), space.one(<span class="hljs-string">'[produce-row-tpl]'</span>));
+    };
+
+    <span class="hljs-keyword">return</span> { Init };
+})();</code></pre>
 <p class="doc-next"><a href="tic-tac-toe.html">Next: Tic-tac-toe →</a></p>
 </main>
 <script>

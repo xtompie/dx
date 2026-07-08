@@ -18,141 +18,19 @@
 <body>
 <header class="nav-bar"><a class="brand" href="index.html"><span class="mark">DX</span></a><button type="button" class="nav-toggle" onclick="Nav.Toggle(this)" aria-label="Menu" aria-expanded="false"><span class="nav-burger"></span></button></header>
 <div class="nav-scrim" onclick="Nav.Close(this)"></div>
-<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a><a href="hx.html">Hx</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="todo.html">Todo list</a><a href="filter.html">Filter</a><a href="produce.html">Produce</a><a class="active" href="tic-tac-toe.html">Tic-tac-toe</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="the-simple-way.html">The simple way</a><a href="dx-vs-others.html">DX vs Others</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
+<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a><a href="hx.html">Hx</a><a href="notify.html">Notify</a><a href="rensen.html">Rensen</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="filter.html">Filter</a><a href="todo.html">Todo list</a><a href="produce.html">Produce</a><a class="active" href="tic-tac-toe.html">Tic-tac-toe</a><a href="kanban.html">Kanban</a><a href="cells.html">Cells</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="the-simple-way.html">The simple way</a><a href="dx-vs-others.html">DX vs Others</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
 <main class="content"><h1 id="tic-tac-toe">Tic-tac-toe<a class="anchor" href="#tic-tac-toe" aria-hidden="true">#</a></h1>
 <p>The <a href="https://react.dev/learn/tutorial-tic-tac-toe">React tutorial</a> builds this game to teach lifting state up, immutability, list keys, and time travel. Most of those are the cost of holding state in JavaScript. Here the state is in the DOM, so they never come up. What is left is the game itself: whose turn it is, who won, and a history to step back through.</p>
-<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ttt-space</span> <span class="hljs-attr">ttt-turn</span>=<span class="hljs-string">"X"</span> <span class="hljs-attr">ttt-winner</span>=<span class="hljs-string">""</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ttt-status</span>&gt;</span>Next player: X<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ttt-board</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ttt-cell</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Play(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ttt-cell</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Play(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ttt-cell</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Play(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ttt-cell</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Play(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ttt-cell</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Play(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ttt-cell</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Play(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ttt-cell</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Play(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ttt-cell</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Play(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ttt-cell</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Play(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ol</span> <span class="hljs-attr">ttt-history</span> <span class="hljs-attr">val-tpl</span>=<span class="hljs-string">"[ttt-move-tpl]"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">ttt-move-tpl</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">ttt-move</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Attr"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"board"</span> <span class="hljs-attr">val-attr</span>=<span class="hljs-string">"ttt-move-board"</span> <span class="hljs-attr">hidden</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Attr"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"turn"</span> <span class="hljs-attr">val-attr</span>=<span class="hljs-string">"ttt-move-turn"</span> <span class="hljs-attr">hidden</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"label"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Jump(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">Ttt.Init(<span class="hljs-built_in">document</span>.currentScript);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> Ttt = <span class="hljs-function">(<span class="hljs-params">(</span>) =&gt;</span> {
-    <span class="hljs-keyword">const</span> lines = [[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>],[<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">8</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">4</span>,<span class="hljs-number">8</span>],[<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>]];
-
-    <span class="hljs-keyword">const</span> Winner = <span class="hljs-function">(<span class="hljs-params">m</span>) =&gt;</span> {
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [a, b, c] <span class="hljs-keyword">of</span> lines) {
-            <span class="hljs-keyword">if</span> (m[a] &amp;&amp; m[a] === m[b] &amp;&amp; m[a] === m[c]) <span class="hljs-keyword">return</span> m[a];
-        }
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-    };
-
-    <span class="hljs-keyword">const</span> Marks = <span class="hljs-function">(<span class="hljs-params">space</span>) =&gt;</span> space.all(<span class="hljs-string">'[ttt-cell]'</span>).map(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> c.vget().mark);
-
-    <span class="hljs-keyword">const</span> Status = <span class="hljs-function">(<span class="hljs-params">space, m</span>) =&gt;</span> {
-        <span class="hljs-keyword">const</span> winner = Winner(m);
-        space.attr(<span class="hljs-string">'ttt-winner'</span>, winner || <span class="hljs-literal">null</span>);
-        space.one(<span class="hljs-string">'[ttt-status]'</span>).textContent =
-            winner ? <span class="hljs-string">`Winner: <span class="hljs-subst">${winner}</span>`</span> :
-            m.every(<span class="hljs-built_in">Boolean</span>) ? <span class="hljs-string">'Draw'</span> :
-            <span class="hljs-string">`Next player: <span class="hljs-subst">${space.attr(<span class="hljs-string">'ttt-turn'</span>)}</span>`</span>;
-    };
-
-    <span class="hljs-keyword">const</span> Current = <span class="hljs-function">(<span class="hljs-params">space</span>) =&gt;</span> space.one(<span class="hljs-string">'[ttt-move][ttt-current]'</span>);
-
-    <span class="hljs-keyword">const</span> Select = <span class="hljs-function">(<span class="hljs-params">move</span>) =&gt;</span> {
-        move.up(<span class="hljs-string">'[ttt-space]'</span>).all(<span class="hljs-string">'[ttt-move]'</span>).each(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.attr(<span class="hljs-string">'ttt-current'</span>, <span class="hljs-literal">null</span>));
-        move.attr(<span class="hljs-string">'ttt-current'</span>, <span class="hljs-string">''</span>);
-    };
-
-    <span class="hljs-keyword">const</span> Snapshot = <span class="hljs-function">(<span class="hljs-params">space, m</span>) =&gt;</span> {
-        <span class="hljs-keyword">const</span> history = space.one(<span class="hljs-string">'[ttt-history]'</span>);
-        <span class="hljs-keyword">const</span> move = history.children.length;
-        history.vappend([{
-            <span class="hljs-attr">board</span>: m.join(<span class="hljs-string">','</span>),
-            <span class="hljs-attr">turn</span>: space.attr(<span class="hljs-string">'ttt-turn'</span>),
-            <span class="hljs-attr">label</span>: move === <span class="hljs-number">0</span> ? <span class="hljs-string">'Go to game start'</span> : <span class="hljs-string">`Go to move #<span class="hljs-subst">${move}</span>`</span>,
-        }]);
-        Select(history.lastElementChild);
-    };
-
-    <span class="hljs-keyword">const</span> Play = <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
-        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[ttt-space]'</span>);
-        <span class="hljs-keyword">const</span> cell = ctx.up(<span class="hljs-string">'[ttt-cell]'</span>);
-        <span class="hljs-keyword">if</span> (space.attr(<span class="hljs-string">'ttt-winner'</span>) || cell.vget().mark) <span class="hljs-keyword">return</span>;
-
-        <span class="hljs-keyword">const</span> current = Current(space);
-        <span class="hljs-keyword">while</span> (current.nextElementSibling) current.nextElementSibling.remove();
-
-        <span class="hljs-keyword">const</span> turn = space.attr(<span class="hljs-string">'ttt-turn'</span>);
-        cell.vset({ <span class="hljs-attr">mark</span>: turn });
-        space.attr(<span class="hljs-string">'ttt-turn'</span>, turn === <span class="hljs-string">'X'</span> ? <span class="hljs-string">'O'</span> : <span class="hljs-string">'X'</span>);
-
-        <span class="hljs-keyword">const</span> m = Marks(space);
-        Status(space, m);
-        Snapshot(space, m);
-    };
-
-    <span class="hljs-keyword">const</span> Jump = <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
-        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[ttt-space]'</span>);
-        <span class="hljs-keyword">const</span> move = ctx.up(<span class="hljs-string">'[ttt-move]'</span>);
-        <span class="hljs-keyword">const</span> snap = move.vget();
-
-        <span class="hljs-keyword">const</span> board = snap.board.split(<span class="hljs-string">','</span>);
-        space.all(<span class="hljs-string">'[ttt-cell]'</span>).each(<span class="hljs-function">(<span class="hljs-params">c, i</span>) =&gt;</span> c.vset({ <span class="hljs-attr">mark</span>: board[i] }));
-        space.attr(<span class="hljs-string">'ttt-turn'</span>, snap.turn);
-        Status(space, board);
-        Select(move);
-    };
-
-    <span class="hljs-keyword">const</span> Init = <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
-        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[ttt-space]'</span>);
-        Snapshot(space, Marks(space));
-    };
-
-    <span class="hljs-keyword">return</span> { Play, Jump, Init };
-})();</code></pre>
-<p>Each handler takes the event's <code>ctx</code> and resolves what it needs through the contract. <code>Play</code> calls <code>ctx.up('[ttt-cell]')</code> to find its cell; <code>up</code> returns the element itself when it already matches, so the cell is looked up, not assumed. The mark is read and written through <code>val</code>, not touched as raw text. The turn lives in one attribute on the space, <code>ttt-turn</code>. There is no board array in JavaScript to keep in agreement with the screen; the nine cells are the board. Nothing is lifted, nothing is copied.</p>
-<p>Winning is the one piece of real game logic, and it is the same plain function React uses: eight lines, checked for three equal marks. Its input is the nine cells read from the DOM.</p>
-<h2 id="time-travel">Time travel<a class="anchor" href="#time-travel" aria-hidden="true">#</a></h2>
-<p>Every move appends an entry to <code>[ttt-history]</code>, carrying a snapshot of the board read straight off the cells, as its own DOM state. The active entry is marked with <code>ttt-current</code>.</p>
-<p>Clicking an entry runs <code>Jump</code>: it writes that snapshot back into the cells, restores the turn, and moves <code>ttt-current</code> there. The later entries stay. You are back in the past, but the future is still on the board, so you can step forward again. Only when you play a move from a past point does <code>Play</code> drop every entry after the current one, and the new move starts a fresh line. That is a real timeline that branches, not an eager delete.</p>
-<p>There is no move index into an immutable array, and no store to rewind. The past is a list of real nodes; going back is reading one of them.</p>
 <div class="tictactoe-demo">
 <style>
-[ttt-board] {
-    display: grid;
-    grid-template-columns: repeat(3, 3rem);
-    grid-auto-rows: 3rem;
-    gap: 4px;
-    margin: .75rem 0;
-}
-[ttt-cell] {
-    font-size: 1.4rem;
-    font-weight: 700;
-    line-height: 1;
-    cursor: pointer;
-}
-[ttt-status] {
-    font-weight: 600;
-}
-[ttt-history] {
-    margin: .75rem 0 0;
-    padding-left: 1.25rem;
-}
-[ttt-move] button {
-    cursor: pointer;
-}
-[ttt-move][ttt-current] button {
-    font-weight: 700;
-}
+.tictactoe-demo [ttt-space] { max-width:16rem; margin:0 auto; }
+.tictactoe-demo [ttt-status] { font-weight:600; color:var(--ink); text-align:center; margin-bottom:.6rem; }
+.tictactoe-demo [ttt-board] { display:grid; grid-template-columns:repeat(3, 3rem); grid-auto-rows:3rem; gap:6px; justify-content:center; margin:.5rem 0; }
+.tictactoe-demo [ttt-cell] { font-size:1.4rem; font-weight:700; line-height:1; cursor:pointer; color:var(--ink); background:var(--soft); border:1px solid var(--line); border-radius:var(--r-sm); }
+.tictactoe-demo [ttt-cell]:hover { border-color:var(--muted); }
+.tictactoe-demo [ttt-history] { margin:.9rem 0 0; padding-left:1.25rem; color:var(--body); }
+.tictactoe-demo [ttt-move] button { cursor:pointer; background:none; border:0; padding:.1rem 0; font:inherit; color:var(--link); }
+.tictactoe-demo [ttt-move][ttt-current] button { font-weight:700; color:var(--ink); }
 </style>
 <script>
 const dom = document;
@@ -203,6 +81,19 @@ HTMLElement.prototype.attr = function(a, v) {
 }
 HTMLElement.prototype.attrt = function(a, v1, v2) {
     this.attr(a, this.attr(a) === v1 ? v2 : v1);
+    return this;
+}
+HTMLElement.prototype.attrs = function(prefix, values) {
+    if (values === undefined) {
+        const pre = prefix === undefined ? '' : prefix + '-';
+        const out = {};
+        for (const a of this.attributes) {
+            if (a.name.startsWith(pre)) out[a.name.slice(pre.length)] = a.value;
+        }
+        return out;
+    }
+    const pre = prefix + '-';
+    Object.entries(values).each(([k, v]) => this.setAttribute(pre + k, v));
     return this;
 }
 HTMLElement.prototype.clear = function() {
@@ -452,15 +343,17 @@ const Ttt = (() => {
         return null;
     };
 
-    const Marks = (space) => space.all('[ttt-cell]').map(c => c.vget().mark);
+    const Board = (space) => space.one('[ttt-board]');
+    const Marks = (space) => Board(space).varr().map(c => c.mark);
 
     const Status = (space, m) => {
         const winner = Winner(m);
         space.attr('ttt-winner', winner || null);
-        space.one('[ttt-status]').textContent =
-            winner ? `Winner: ${winner}` :
-            m.every(Boolean) ? 'Draw' :
-            `Next player: ${space.attr('ttt-turn')}`;
+        space.one('[ttt-status]').vset(
+            winner ? { winner: { mark: winner } } :
+            m.every(Boolean) ? { draw: true } :
+            { next: { mark: space.attr('ttt-turn') } }
+        );
     };
 
     const Current = (space) => space.one('[ttt-move][ttt-current]');
@@ -501,17 +394,17 @@ const Ttt = (() => {
     const Jump = (ctx) => {
         const space = ctx.up('[ttt-space]');
         const move = ctx.up('[ttt-move]');
-        const snap = move.vget();
+        const m = move.vget().board.split(',');
 
-        const board = snap.board.split(',');
-        space.all('[ttt-cell]').each((c, i) => c.vset({ mark: board[i] }));
-        space.attr('ttt-turn', snap.turn);
-        Status(space, board);
+        Board(space).clear().vappend(m.map(mark => ({ mark })));
+        space.attr('ttt-turn', move.vget().turn);
+        Status(space, m);
         Select(move);
     };
 
     const Init = (ctx) => {
         const space = ctx.up('[ttt-space]');
+        Board(space).vappend(Array.from({ length: 9 }, () => ({ mark: '' })));
         Snapshot(space, Marks(space));
     };
 
@@ -519,18 +412,15 @@ const Ttt = (() => {
 })();
 </script>
 <div ttt-space ttt-turn="X" ttt-winner="">
-    <div ttt-status>Next player: X</div>
-    <div ttt-board>
-        <button ttt-cell val val-fx="Text" val-key="mark" onclick="Ttt.Play(this)"></button>
-        <button ttt-cell val val-fx="Text" val-key="mark" onclick="Ttt.Play(this)"></button>
-        <button ttt-cell val val-fx="Text" val-key="mark" onclick="Ttt.Play(this)"></button>
-        <button ttt-cell val val-fx="Text" val-key="mark" onclick="Ttt.Play(this)"></button>
-        <button ttt-cell val val-fx="Text" val-key="mark" onclick="Ttt.Play(this)"></button>
-        <button ttt-cell val val-fx="Text" val-key="mark" onclick="Ttt.Play(this)"></button>
-        <button ttt-cell val val-fx="Text" val-key="mark" onclick="Ttt.Play(this)"></button>
-        <button ttt-cell val val-fx="Text" val-key="mark" onclick="Ttt.Play(this)"></button>
-        <button ttt-cell val val-fx="Text" val-key="mark" onclick="Ttt.Play(this)"></button>
+    <div ttt-status>
+        <div val val-fx="If" val-key="next">Next player: <span val val-fx="Text" val-key="mark">X</span></div>
+        <div val val-fx="If" val-key="winner" style="display:none">Winner: <span val val-fx="Text" val-key="mark"></span></div>
+        <div val val-fx="If" val-key="draw" style="display:none">Draw</div>
     </div>
+    <div ttt-board val-tpl="[ttt-cell-tpl]"></div>
+    <template ttt-cell-tpl>
+        <button ttt-cell val val-fx="Text" val-key="mark" onclick="Ttt.Play(this)"></button>
+    </template>
     <ol ttt-history val-tpl="[ttt-move-tpl]"></ol>
     <template ttt-move-tpl>
         <li ttt-move>
@@ -543,7 +433,111 @@ const Ttt = (() => {
 </div>
 
 </div>
-<p class="doc-next"><a href="the-simple-way.html">Next: The simple way →</a></p>
+<p class="code-src">Uses: <a href="https://github.com/xtompie/dx/blob/master/Util/Util.js" target="_blank" rel="noopener">Util.js</a>, <a href="https://github.com/xtompie/dx/blob/master/Val/Val.js" target="_blank" rel="noopener">Val.js</a></p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ttt-space</span> <span class="hljs-attr">ttt-turn</span>=<span class="hljs-string">"X"</span> <span class="hljs-attr">ttt-winner</span>=<span class="hljs-string">""</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ttt-status</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"If"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"next"</span>&gt;</span>Next player: <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span>&gt;</span>X<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"If"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"winner"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:none"</span>&gt;</span>Winner: <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"If"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"draw"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:none"</span>&gt;</span>Draw<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ttt-board</span> <span class="hljs-attr">val-tpl</span>=<span class="hljs-string">"[ttt-cell-tpl]"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">ttt-cell-tpl</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ttt-cell</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"mark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Play(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ol</span> <span class="hljs-attr">ttt-history</span> <span class="hljs-attr">val-tpl</span>=<span class="hljs-string">"[ttt-move-tpl]"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">ttt-move-tpl</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">ttt-move</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Attr"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"board"</span> <span class="hljs-attr">val-attr</span>=<span class="hljs-string">"ttt-move-board"</span> <span class="hljs-attr">hidden</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Attr"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"turn"</span> <span class="hljs-attr">val-attr</span>=<span class="hljs-string">"ttt-move-turn"</span> <span class="hljs-attr">hidden</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">val</span> <span class="hljs-attr">val-fx</span>=<span class="hljs-string">"Text"</span> <span class="hljs-attr">val-key</span>=<span class="hljs-string">"label"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"Ttt.Jump(this)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">Ttt.Init(<span class="hljs-built_in">document</span>.currentScript);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> Ttt = <span class="hljs-function">(<span class="hljs-params">(</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> lines = [[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>],[<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">8</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">4</span>,<span class="hljs-number">8</span>],[<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>]];
+
+    <span class="hljs-keyword">const</span> Winner = <span class="hljs-function">(<span class="hljs-params">m</span>) =&gt;</span> {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [a, b, c] <span class="hljs-keyword">of</span> lines) {
+            <span class="hljs-keyword">if</span> (m[a] &amp;&amp; m[a] === m[b] &amp;&amp; m[a] === m[c]) <span class="hljs-keyword">return</span> m[a];
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    };
+
+    <span class="hljs-keyword">const</span> Board = <span class="hljs-function">(<span class="hljs-params">space</span>) =&gt;</span> space.one(<span class="hljs-string">'[ttt-board]'</span>);
+    <span class="hljs-keyword">const</span> Marks = <span class="hljs-function">(<span class="hljs-params">space</span>) =&gt;</span> Board(space).varr().map(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> c.mark);
+
+    <span class="hljs-keyword">const</span> Status = <span class="hljs-function">(<span class="hljs-params">space, m</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> winner = Winner(m);
+        space.attr(<span class="hljs-string">'ttt-winner'</span>, winner || <span class="hljs-literal">null</span>);
+        space.one(<span class="hljs-string">'[ttt-status]'</span>).vset(
+            winner ? { <span class="hljs-attr">winner</span>: { <span class="hljs-attr">mark</span>: winner } } :
+            m.every(<span class="hljs-built_in">Boolean</span>) ? { <span class="hljs-attr">draw</span>: <span class="hljs-literal">true</span> } :
+            { <span class="hljs-attr">next</span>: { <span class="hljs-attr">mark</span>: space.attr(<span class="hljs-string">'ttt-turn'</span>) } }
+        );
+    };
+
+    <span class="hljs-keyword">const</span> Current = <span class="hljs-function">(<span class="hljs-params">space</span>) =&gt;</span> space.one(<span class="hljs-string">'[ttt-move][ttt-current]'</span>);
+
+    <span class="hljs-keyword">const</span> Select = <span class="hljs-function">(<span class="hljs-params">move</span>) =&gt;</span> {
+        move.up(<span class="hljs-string">'[ttt-space]'</span>).all(<span class="hljs-string">'[ttt-move]'</span>).each(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.attr(<span class="hljs-string">'ttt-current'</span>, <span class="hljs-literal">null</span>));
+        move.attr(<span class="hljs-string">'ttt-current'</span>, <span class="hljs-string">''</span>);
+    };
+
+    <span class="hljs-keyword">const</span> Snapshot = <span class="hljs-function">(<span class="hljs-params">space, m</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> history = space.one(<span class="hljs-string">'[ttt-history]'</span>);
+        <span class="hljs-keyword">const</span> move = history.children.length;
+        history.vappend([{
+            <span class="hljs-attr">board</span>: m.join(<span class="hljs-string">','</span>),
+            <span class="hljs-attr">turn</span>: space.attr(<span class="hljs-string">'ttt-turn'</span>),
+            <span class="hljs-attr">label</span>: move === <span class="hljs-number">0</span> ? <span class="hljs-string">'Go to game start'</span> : <span class="hljs-string">`Go to move #<span class="hljs-subst">${move}</span>`</span>,
+        }]);
+        Select(history.lastElementChild);
+    };
+
+    <span class="hljs-keyword">const</span> Play = <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[ttt-space]'</span>);
+        <span class="hljs-keyword">const</span> cell = ctx.up(<span class="hljs-string">'[ttt-cell]'</span>);
+        <span class="hljs-keyword">if</span> (space.attr(<span class="hljs-string">'ttt-winner'</span>) || cell.vget().mark) <span class="hljs-keyword">return</span>;
+
+        <span class="hljs-keyword">const</span> current = Current(space);
+        <span class="hljs-keyword">while</span> (current.nextElementSibling) current.nextElementSibling.remove();
+
+        <span class="hljs-keyword">const</span> turn = space.attr(<span class="hljs-string">'ttt-turn'</span>);
+        cell.vset({ <span class="hljs-attr">mark</span>: turn });
+        space.attr(<span class="hljs-string">'ttt-turn'</span>, turn === <span class="hljs-string">'X'</span> ? <span class="hljs-string">'O'</span> : <span class="hljs-string">'X'</span>);
+
+        <span class="hljs-keyword">const</span> m = Marks(space);
+        Status(space, m);
+        Snapshot(space, m);
+    };
+
+    <span class="hljs-keyword">const</span> Jump = <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[ttt-space]'</span>);
+        <span class="hljs-keyword">const</span> move = ctx.up(<span class="hljs-string">'[ttt-move]'</span>);
+        <span class="hljs-keyword">const</span> m = move.vget().board.split(<span class="hljs-string">','</span>);
+
+        Board(space).clear().vappend(m.map(<span class="hljs-function"><span class="hljs-params">mark</span> =&gt;</span> ({ mark })));
+        space.attr(<span class="hljs-string">'ttt-turn'</span>, move.vget().turn);
+        Status(space, m);
+        Select(move);
+    };
+
+    <span class="hljs-keyword">const</span> Init = <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[ttt-space]'</span>);
+        Board(space).vappend(<span class="hljs-built_in">Array</span>.from({ <span class="hljs-attr">length</span>: <span class="hljs-number">9</span> }, () =&gt; ({ <span class="hljs-attr">mark</span>: <span class="hljs-string">''</span> })));
+        Snapshot(space, Marks(space));
+    };
+
+    <span class="hljs-keyword">return</span> { Play, Jump, Init };
+})();</code></pre>
+<p>Each handler takes the event's <code>ctx</code> and resolves what it needs through the contract. <code>Play</code> calls <code>ctx.up('[ttt-cell]')</code> to find its cell; <code>up</code> returns the element itself when it already matches, so the cell is looked up, not assumed. The mark is read and written through <code>val</code>, not touched as raw text. The turn lives in one attribute on the space, <code>ttt-turn</code>. There is no board array in JavaScript to keep in agreement with the screen; the nine cells are the board. Nothing is lifted, nothing is copied.</p>
+<p>Winning is the one piece of real game logic, and it is the same plain function React uses: eight lines, checked for three equal marks. Its input is the nine cells read from the DOM.</p>
+<h2 id="time-travel">Time travel<a class="anchor" href="#time-travel" aria-hidden="true">#</a></h2>
+<p>Every move appends an entry to <code>[ttt-history]</code>, carrying a snapshot of the board read straight off the cells, as its own DOM state. The active entry is marked with <code>ttt-current</code>.</p>
+<p>Clicking an entry runs <code>Jump</code>: it writes that snapshot back into the cells, restores the turn, and moves <code>ttt-current</code> there. The later entries stay. You are back in the past, but the future is still on the board, so you can step forward again. Only when you play a move from a past point does <code>Play</code> drop every entry after the current one, and the new move starts a fresh line. That is a real timeline that branches, not an eager delete.</p>
+<p>There is no move index into an immutable array, and no store to rewind. The past is a list of real nodes; going back is reading one of them.</p>
+<p class="doc-next"><a href="kanban.html">Next: Kanban →</a></p>
 </main>
 <script>
 // Mobile nav drawer — built the DX way: state in the DOM (body[nav-open]),

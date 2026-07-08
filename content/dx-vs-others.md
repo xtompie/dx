@@ -54,7 +54,7 @@ A new developer joins the project and needs to read the code and start making ch
 
 Picking up a React, Vue, or Angular codebase means learning its rendering model, its hooks or reactivity rules, its state-management library, its routing library, its build tooling, before any of it touches business logic. None of it transfers to the next project, or even to this one two major versions later. The app itself carries extra complexity on top: solving problems the framework introduces, and following its particular style for solving them. That design is specific to whoever built it, and the framework does not teach it.
 
-In DX, the code is plain HTML and plain JavaScript. State is visible directly in the browser's Elements panel, not inside a framework's internal store. The mechanisms are generic and reused everywhere: understanding [Visible](visible.html) once already covers tabs, accordions, dropdowns, and modals. There is no separate architecture to reverse-engineer on top.
+In DX, the code is plain HTML and plain JavaScript. State is visible directly in the browser's Elements panel, not inside a framework's internal store. The mechanisms are generic and reused everywhere: understanding [Visible](visible.html) once already covers tabs, accordions, dropdowns. There is no separate architecture to reverse-engineer on top.
 
 ## Time to interactive
 

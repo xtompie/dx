@@ -18,31 +18,8 @@
 <body>
 <header class="nav-bar"><a class="brand" href="index.html"><span class="mark">DX</span></a><button type="button" class="nav-toggle" onclick="Nav.Toggle(this)" aria-label="Menu" aria-expanded="false"><span class="nav-burger"></span></button></header>
 <div class="nav-scrim" onclick="Nav.Close(this)"></div>
-<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a><a href="hx.html">Hx</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a href="todo.html">Todo list</a><a class="active" href="filter.html">Filter</a><a href="produce.html">Produce</a><a href="tic-tac-toe.html">Tic-tac-toe</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="the-simple-way.html">The simple way</a><a href="dx-vs-others.html">DX vs Others</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
+<aside class="nav"><a class="brand" href="index.html"><span class="mark">DX</span></a><div class="nav-group"><a href="introduction.html">Introduction</a></div><div class="nav-group"><div class="nav-title">Foundations</div><a href="dom-state.html">DOM State</a><a href="event-attributes.html">Event attributes</a><a href="action-in-context.html">Action in context</a><a href="modularization.html">Modularization</a><a href="ux-performance.html">High UX Performance</a></div><div class="nav-group"><div class="nav-title">Toolkits</div><a href="util.html">Util</a><a href="val.html">Val</a><a href="hx.html">Hx</a><a href="notify.html">Notify</a><a href="rensen.html">Rensen</a></div><div class="nav-group"><div class="nav-title">Examples</div><a href="visible.html">Visible</a><a class="active" href="filter.html">Filter</a><a href="todo.html">Todo list</a><a href="produce.html">Produce</a><a href="tic-tac-toe.html">Tic-tac-toe</a><a href="kanban.html">Kanban</a><a href="cells.html">Cells</a></div><div class="nav-group"><div class="nav-title">Topics</div><a href="the-simple-way.html">The simple way</a><a href="dx-vs-others.html">DX vs Others</a></div><div class="nav-foot"><a href="https://github.com/xtompie/dx" target="_blank" rel="noopener">GitHub</a></div></aside>
 <main class="content"><h1 id="filter">Filter<a class="anchor" href="#filter" aria-hidden="true">#</a></h1>
-<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">filter-space</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">filter-query</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">oninput</span>=<span class="hljs-string">"Filter.Filter(this)"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>=<span class="hljs-string">"apple fruit"</span>&gt;</span>Apple<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>=<span class="hljs-string">"banana fruit"</span>&gt;</span>Banana<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>=<span class="hljs-string">"cherry fruit"</span>&gt;</span>Cherry<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>=<span class="hljs-string">"carrot vegetable"</span>&gt;</span>Carrot<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>=<span class="hljs-string">"potato vegetable"</span>&gt;</span>Potato<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> Filter = <span class="hljs-function">(<span class="hljs-params">(</span>) =&gt;</span> {
-    <span class="hljs-keyword">const</span> Filter = <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
-        <span class="hljs-keyword">const</span> space = ctx.up(<span class="hljs-string">'[filter-space]'</span>);
-        <span class="hljs-keyword">const</span> query = space.one(<span class="hljs-string">'[filter-query]'</span>).value.trim().toLowerCase();
-        space.all(<span class="hljs-string">'[filter-item]'</span>).each(<span class="hljs-function"><span class="hljs-params">el</span> =&gt;</span> {
-            el.show(el.attr(<span class="hljs-string">'filter-item'</span>).toLowerCase().includes(query));
-        });
-    };
-
-    <span class="hljs-keyword">return</span> { Filter };
-})();</code></pre>
-<p>The input is marked with <code>filter-query</code>. The handler goes up to the space and reads that element, so it never assumes it was called from the input itself. The trigger can be on the input, on a button next to it, or anywhere inside the space.</p>
-<p>Each item carries its search text in the <code>filter-item</code> attribute. The query matches that value, not the visible text. So an item can match words it does not show, like a category. Typing <code>fruit</code> keeps Apple, Banana, and Cherry.</p>
 <div class="filter-demo">
 <div filter-space>
     <input filter-query type="text" oninput="Filter.Filter(this)">
@@ -56,119 +33,66 @@
 </div>
 
 </div>
-<script>
-const dom = document;
-document.al = function(s) {
-    return Array.from(document.querySelectorAll(s));
-};
-document.one = function(s) {
-    return document.querySelector(s);
-};
-Array.prototype.each = function(f) {
-    return this.forEach(f);
-};
-Array.prototype.any = function() {
-    return this.length > 0;
-};
-Array.prototype.none = function() {
-    return this.length === 0;
-};
-DocumentFragment.prototype.one = function(s) {
-    return this.querySelector(s);
-};
-DocumentFragment.prototype.allfd = function(s) {
-    return Array.from(this.children).reduce((r, e) => {
-        return e.matches(s) ? r.concat(e) : r.concat(e.allfd(s));
-    }, []);
+<style>
+.filter-demo [filter-space] { display:flex; flex-direction:column; gap:.7rem; max-width:24rem; margin:0 auto; }
+.filter-demo input {
+  background:var(--code-bg); border:1px solid var(--line); border-radius:var(--r-sm);
+  color:var(--ink); font:inherit; padding:.5rem .65rem; outline:none; transition:border-color .12s ease;
 }
-HTMLElement.prototype.all = function(s) {
-    return Array.from(this.querySelectorAll(s));
+.filter-demo input:focus { border-color:var(--demo-accent); }
+.filter-demo ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.35rem; }
+.filter-demo [filter-item] {
+  padding:.45rem .65rem; background:var(--soft); border:1px solid var(--line);
+  border-radius:var(--r-sm); color:var(--ink);
 }
-HTMLElement.prototype.allfd = function(s) {
-    return Array.from(this.children)
-        .filter(e => e instanceof HTMLElement)
-        .reduce((r, e) => {
-            return e.matches(s) ? r.concat(e) : r.concat(e.allfd(s));
-        }, []);
-}
-HTMLElement.prototype.attr = function(a, v) {
-    if (v === undefined) {
-        return this.getAttribute(a);
-    }
-    else if (v === null || v === false) {
-        this.removeAttribute(a);
-        return this;
-    } else {
-        this.setAttribute(a, v);
-        return this;
-    }
-}
-HTMLElement.prototype.attrt = function(a, v1, v2) {
-    this.attr(a, this.attr(a) === v1 ? v2 : v1);
-    return this;
-}
-HTMLElement.prototype.clear = function() {
-    this.innerHTML = '';
-    return this;
-}
-HTMLElement.prototype.cls = function() {
-    return this.classList;
-}
-HTMLElement.prototype.flag = function(f, v = null) {
-    if (v === null) {
-        return this.hasAttribute(f);
-    }
-    v === true ? this.setAttribute(f, '') : this.removeAttribute(f);
-    return this;
-}
-HTMLElement.prototype.hide = function(v = true) {
-    this.style.display = v === true ? 'none' : '';
-    return this;
-}
-HTMLElement.prototype.one = function(s) {
-    return this.querySelector(s);
-}
-HTMLElement.prototype.tpl = function() {
-    return this.content.firstElementChild.cloneNode(true);
-}
-HTMLElement.prototype.show = function(v = true) {
-    this.style.display = v === true ? '' : 'none';
-    return this;
-}
-HTMLElement.prototype.up = function(s) {
-    if (s === undefined) {
-        return this.parentNode;
-    }
-    if (this.matches(s)) {
-        return this;
-    }
-    let node = this.closest(s);
-    if (node) {
-        return node;
-    }
-    return document.body;
-}
-KeyboardEvent.prototype.combo = function(combo) {
-    return `${this.altKey ? 'Alt+' : ''}${this.ctrlKey ? 'Ctrl+' : ''}${this.metaKey ? 'Meta+' : ''}${this.shiftKey ? 'Shift+' : ''}${this.key}` === combo;
-};
-String.prototype.cut = function(length) {
-    return this.length > length ? this.substring(0, length) + '...' : this;
-};
-</script>
+</style>
 <script>
 const Filter = (() => {
+    const up = (el, sel) => el.matches(sel) ? el : el.closest(sel);
+
     const Filter = (ctx) => {
-        const space = ctx.up('[filter-space]');
-        const query = space.one('[filter-query]').value.trim().toLowerCase();
-        space.all('[filter-item]').each(el => {
-            el.show(el.attr('filter-item').toLowerCase().includes(query));
+        const space = up(ctx, '[filter-space]');
+        const lane = space.getAttribute('filter-lane');
+        const query = space.querySelector('[filter-query]').value.trim().toLowerCase();
+        const selector = lane ? `[filter-item][filter-lane="${lane}"]` : '[filter-item]';
+        space.querySelectorAll(selector).forEach(el => {
+            el.style.display = el.getAttribute('filter-item').toLowerCase().includes(query) ? '' : 'none';
         });
     };
 
     return { Filter };
 })();
 </script>
-<p class="doc-next"><a href="produce.html">Next: Produce →</a></p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">filter-space</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">filter-query</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">oninput</span>=<span class="hljs-string">"Filter.Filter(this)"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>=<span class="hljs-string">"apple fruit"</span>&gt;</span>Apple<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>=<span class="hljs-string">"banana fruit"</span>&gt;</span>Banana<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>=<span class="hljs-string">"cherry fruit"</span>&gt;</span>Cherry<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>=<span class="hljs-string">"carrot vegetable"</span>&gt;</span>Carrot<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">filter-item</span>=<span class="hljs-string">"potato vegetable"</span>&gt;</span>Potato<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> Filter = <span class="hljs-function">(<span class="hljs-params">(</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> up = <span class="hljs-function">(<span class="hljs-params">el, sel</span>) =&gt;</span> el.matches(sel) ? el : el.closest(sel);
+
+    <span class="hljs-keyword">const</span> Filter = <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> space = up(ctx, <span class="hljs-string">'[filter-space]'</span>);
+        <span class="hljs-keyword">const</span> lane = space.getAttribute(<span class="hljs-string">'filter-lane'</span>);
+        <span class="hljs-keyword">const</span> query = space.querySelector(<span class="hljs-string">'[filter-query]'</span>).value.trim().toLowerCase();
+        <span class="hljs-keyword">const</span> selector = lane ? <span class="hljs-string">`[filter-item][filter-lane="<span class="hljs-subst">${lane}</span>"]`</span> : <span class="hljs-string">'[filter-item]'</span>;
+        space.querySelectorAll(selector).forEach(<span class="hljs-function"><span class="hljs-params">el</span> =&gt;</span> {
+            el.style.display = el.getAttribute(<span class="hljs-string">'filter-item'</span>).toLowerCase().includes(query) ? <span class="hljs-string">''</span> : <span class="hljs-string">'none'</span>;
+        });
+    };
+
+    <span class="hljs-keyword">return</span> { Filter };
+})();</code></pre>
+<p>The input is marked with <code>filter-query</code>. The handler goes up to the space and reads that element, so it never assumes it was called from the input itself. The trigger can be on the input, on a button next to it, or anywhere inside the space.</p>
+<p>Each item carries its search text in the <code>filter-item</code> attribute. The query matches that value, not the visible text. So an item can match words it does not show, like a category. Typing <code>fruit</code> keeps Apple, Banana, and Cherry.</p>
+<h2 id="lanes">Lanes<a class="anchor" href="#lanes" aria-hidden="true">#</a></h2>
+<p>Like <code>Visible</code>, <code>Filter</code> can share a space with other mechanisms. A <code>filter-space</code> names a <code>filter-lane</code>, and each item belongs to that lane; the filter touches only its own lane's items. Without <code>filter-lane</code> it filters every <code>[filter-item]</code> in the space, unchanged.</p>
+<p class="doc-next"><a href="todo.html">Next: Todo list →</a></p>
 </main>
 <script>
 // Mobile nav drawer — built the DX way: state in the DOM (body[nav-open]),

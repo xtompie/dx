@@ -76,21 +76,49 @@ function nav_html(array $nav, string $current): string
     return $out;
 }
 
-// Resolve the include comments left untouched by the markdown pass.
-//   <!-- include:      path --> → the file's code, highlighted, as a plain block
-//   <!-- source:       path --> → just a link to the source
-//   <!-- include-html: path --> → the file's contents, raw, so it renders live on the page
-//   <!-- include-js:   path --> → the file wrapped in <script>, so it runs
-//   <!-- include-css:  path --> → the file wrapped in <style>, so it applies
-// The specific -html/-js/-css forms run before the plain include: so it never eats them.
+// Resolve the directive comments left untouched by the markdown pass. Each does one job.
+//   Show, inert:
+//     <!-- code:   path      --> → the file as a highlighted code block (language from extension)
+//     <!-- source: path      --> → one link to the file's source
+//     <!-- uses:   a b c     --> → one line of links to the files the reader must add
+//   Embed, takes effect (chosen by extension), nothing shown as code:
+//     <!-- embed:  path      --> → .js wrapped in <script> (runs), .css in <style> (applies), else raw (renders live)
+//   Demo, one block: the file rendered live above its own highlighted source:
+//     <!-- demo:   path      --> → a preview box + the file's code, joined into one card
+// include:/include-html/include-js/include-css are legacy aliases, kept so unmigrated pages keep working.
 function includes(string $html, string $root): string
 {
+    $html = preg_replace_callback('/<!--\s*demo:\s*(\S+)\s*-->/',  fn($m) => demo_file($m[1], $root), $html);
+    $html = preg_replace_callback('/<!--\s*embed:\s*(\S+)\s*-->/', fn($m) => embed_file($m[1], $root), $html);
+    $html = preg_replace_callback('/<!--\s*code:\s*(\S+)\s*-->/',  fn($m) => include_code($m[1], $root), $html);
+    $html = preg_replace_callback('/<!--\s*uses:\s*(.+?)\s*-->/',  fn($m) => uses_block(preg_split('/\s+/', trim($m[1]))), $html);
+
+    // legacy aliases
     $html = preg_replace_callback('/<!--\s*include-html:\s*(\S+)\s*-->/', fn($m) => raw_file($m[1], $root), $html);
     $html = preg_replace_callback('/<!--\s*include-js:\s*(\S+)\s*-->/',   fn($m) => wrap_file($m[1], $root, 'script'), $html);
     $html = preg_replace_callback('/<!--\s*include-css:\s*(\S+)\s*-->/',  fn($m) => wrap_file($m[1], $root, 'style'), $html);
     $html = preg_replace_callback('/<!--\s*include:\s*(\S+)\s*-->/',      fn($m) => include_code($m[1], $root), $html);
     $html = preg_replace_callback('/<!--\s*source:\s*(\S+)\s*-->/',       fn($m) => source_link($m[1], $root), $html);
     return $html;
+}
+
+// demo: the file rendered live in a preview box, with its own source shown right below,
+// joined into one card. One file is the single source for both the demo and the code.
+function demo_file(string $path, string $root): string
+{
+    $path = ltrim($path, '/');
+    if (!is_file("$root/$path")) return '<!-- demo not found: ' . htmlspecialchars($path) . ' -->';
+    $raw = rtrim(file_get_contents("$root/$path"), "\n");
+    return '<div class="demo">' . "\n" . $raw . "\n</div>\n" . highlight(ext_lang($path), $raw);
+}
+
+// embed: the file takes effect, chosen by extension. .js runs, .css applies, anything else pastes in raw.
+function embed_file(string $path, string $root): string
+{
+    $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+    if ($ext === 'js')  return wrap_file($path, $root, 'script');
+    if ($ext === 'css') return wrap_file($path, $root, 'style');
+    return raw_file($path, $root);
 }
 
 // Raw file contents (rendered live). Wrapped file contents (runs / applies).
@@ -112,6 +140,19 @@ function include_code(string $path, string $root): string
     $path = ltrim($path, '/');
     if (!is_file("$root/$path")) return '<pre><code class="hljs">// include not found: ' . htmlspecialchars($path) . '</code></pre>';
     return highlight(ext_lang($path), rtrim(file_get_contents("$root/$path"), "\n"));
+}
+
+// A line of links to each listed file's source, so the reader can open each one.
+function uses_block(array $paths): string
+{
+    $links = [];
+    foreach ($paths as $path) {
+        $p = ltrim($path, '/');
+        if ($p === '' || isset($links[$p])) continue;
+        $href = preg_match('#^https?://#', $p) ? $p : REPO . $p;
+        $links[$p] = '<a href="' . htmlspecialchars($href) . '" target="_blank" rel="noopener">' . htmlspecialchars(basename($p)) . '</a>';
+    }
+    return $links ? '<p class="code-src">Uses: ' . implode(', ', $links) . '</p>' : '';
 }
 
 function source_link(string $path, string $root): string
